@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Kaylee Lynn Studio] | Fine Art Prints &amp; Family Photography</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Fine art prints and peaceful, candid family photography by [Kaylee]. Beautiful artwork and timeless imagery for your home.">
+  <meta name="keywords" content="fine art prints, family photography, fine art landscape, family portrait photographer, original art">
+  
+  <!-- Google Fonts: Cormorant Garamond for elegant headers, Plus Jakarta Sans for clean readable body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & VARIABLES
+       ========================================================================== */
+    :root {
+      /* Warm, Soft, Feminine, Fine-Art Palette */
+      --bg-main: #FDFBF7;        /* Soft cream */
+      --bg-alt: #F7F4EE;         /* Subtly darker warm cream */
+      --text-main: #2C2825;      /* Deep soft charcoal (never pure black) */
+      --text-muted: #6B655F;     /* Warm muted grey */
+      --accent: #8C7A6B;         /* Muted warm taupe/terracotta accent */
+      --accent-hover: #6E5E50;
+      --border-color: #E6E0D6;   /* Subtle divider lines */
+      
+      /* Typography */
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      /* Layout & Spacing */
+      --max-width: 1200px;
+      --section-padding: 80px 24px;
+      --radius: 2px; /* Very subtle corners for modern premium feel */
+      --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    /* Accessibility Focus Styles */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* Typography Hierarchy */
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text-main);
+    }
+
+    h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); letter-spacing: -0.01em; }
+    h2 { font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1.5rem; }
+    h3 { font-size: clamp(1.4rem, 2vw, 1.8rem); }
+    
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .subtitle {
+      font-family: var(--font-sans);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: block;
+      font-weight: 500;
+    }
+
+    /* Button Components */
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      border: 1px solid var(--text-main);
+      background: transparent;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      border-radius: var(--radius);
+    }
+
+    .btn:hover {
+      background: var(--text-main);
+      color: var(--bg-main);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Container */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: var(--section-padding);
+    }
+
+    .section-alt {
+      background-color: var(--bg-alt);
+    }
+
+    .text-center { text-align: center; }
+
+    /* Placeholder Styling for user customization */
+    .img-placeholder {
+      background-color: #EFECE6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      border: 1px dashed var(--border-color);
+      position: relative;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    .header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(253, 251, 247, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(230, 224, 214, 0.5);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 90px;
+    }
+
+    .brand-logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+    }
+
+    .brand-logo span {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background-color: var(--text-main);
+      margin: 6px 0;
+      transition: var(--transition);
+    }
+
+    /* ==========================================================================
+       HOME SECTION
+       ========================================================================== */
+    .hero {
+      padding: 40px 0 80px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-image-container {
+      width: 100%;
+      height: 65vh;
+      min-height: 450px;
+    }
+
+    .hero-image-container img, .hero-image-container .img-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-content h1 {
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-content .btn-group {
+      justify-content: center;
+    }
+
+    /* Featured Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: transparent;
+    }
+
+    .card-image {
+      aspect-ratio: 4/5;
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      transition: var(--transition);
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.02);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .card-price {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    /* Home About Preview */
+    .about-preview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    /* ==========================================================================
+       ARTWORK PAGE (GALLERY & E-COMMERCE)
+       ========================================================================== */
+    .artwork-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .artwork-details {
+      margin-top: 12px;
+    }
+
+    /* ==========================================================================
+       PHOTOGRAPHY PAGE & PRICING
+       ========================================================================== */
+    .portfolio-masonry {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .portfolio-img {
+      aspect-ratio: 3/2;
+    }
+
+    .portfolio-img.vertical {
+      aspect-ratio: 2/3;
+    }
+
+    .pricing-card {
+      background-color: var(--bg-main);
+      padding: 48px 32px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      border-radius: var(--radius);
+    }
+
+    .pricing-price {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin: 16px 0;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin: 24px 0 32px 0;
+      text-align: left;
+    }
+
+    .pricing-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* FAQ Section */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .faq-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    /* ==========================================================================
+       ABOUT PAGE
+       ========================================================================== */
+    .about-full {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .artist-portrait {
+      aspect-ratio: 4/5;
+    }
+
+    /* ==========================================================================
+       CONTACT PAGE & FORM
+       ========================================================================== */
+    .contact-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      background-color: #FFFFFF;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      padding: 60px 0 40px 0;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .social-links a {
+      color: var(--text-muted);
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE MOBILE STYLES
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 90px;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-main);
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        gap: 24px;
+        border-bottom: 1px solid var(--border-color);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .about-preview, .about-full {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-image-container {
+        height: 45vh;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+     HEADER / NAVIGATION
+     ========================================================================== -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo">
+        [Kaylee Lynn Studio]
+        <span>Art &amp; Photography</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle Navigation" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" onclick="closeMenu()">Home</a></li>
+          <li><a href="#artwork" onclick="closeMenu()">Artwork</a></li>
+          <li><a href="#photography" onclick="closeMenu()">Photography</a></li>
+          <li><a href="#about" onclick="closeMenu()">About</a></li>
+          <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+       HOME PAGE
+       ========================================================================== -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-image-container">
+            <!-- PLACEHOLDER: Insert high-res feature image below -->
+            <div class="img-placeholder" style="height: 100%;">
+              [PLACEHOLDER: Main Hero Image - e.g., Fine art print framed or family portrait]
+            </div>
+          </div>
+          
+          <div class="hero-content">
+            <span class="subtitle">Fine Art &amp; Photography</span>
+            <h1>[Kaylee Lynn Studio]</h1>
+            <p>Capturing gentle, organic family imagery and creating fine-art landscape prints designed to bring peace and warmth to your home.</p>
+            
+            <div class="btn-group">
+              <a href="#artwork" class="btn btn-primary">Shop Artwork</a>
+              <a href="#photography" class="btn">Book Photography</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Home: Featured Artwork Preview -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 40px;">
+          <span class="subtitle">Fine Art Collection</span>
+          <h2>Featured Prints</h2>
+        </div>
+
+        <div class="grid-3">
+          <!-- Featured Art 1 -->
+          <div class="card">
+            <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 1]</div>
+            <h3 class="card-title">Morning Light over Meadow</h3>
+            <div class="card-price">From $[120]</div>
+            <a href="#artwork" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
+          </div>
+          <!-- Featured Art 2 -->
+          <div class="card">
+            <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 2]</div>
+            <h3 class="card-title">Quiet Horizon No. 4</h3>
+            <div class="card-price">From $[140]</div>
+            <a href="#artwork" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
+          </div>
+          <!-- Featured Art 3 -->
+          <div class="card">
+            <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 3]</div>
+            <h3 class="card-title">Soft Pines in Mist</h3>
+            <div class="card-price">From $[120]</div>
+            <a href="#artwork" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Home: Featured Photography Preview -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 40px;">
+          <span class="subtitle">Family Stories</span>
+          <h2>Photography Gallery</h2>
+        </div>
+
+        <div class="grid-2">
+          <div class="card-image img-placeholder" style="aspect-ratio: 3/2;">[PLACEHOLDER: Family Photography Sample 1]</div>
+          <div class="card-image img-placeholder" style="aspect-ratio: 3/2;">[PLACEHOLDER: Family Photography Sample 2]</div>
+        </div>
+        
+        <div class="text-center" style="margin-top: 40px;">
+          <a href="#photography" class="btn">Explore Photography Sessions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Home: Short About Preview -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="about-preview">
+          <div class="card-image img-placeholder" style="aspect-ratio: 4/5;">[PLACEHOLDER: Artist Portrait]</div>
+          <div>
+            <span class="subtitle">Behind the Lens &amp; Brush</span>
+            <h2>Hi, I'm [Kaylee]</h2>
+            <p>Hi, I'm Kaylee.</p>
+            <p>A photographer and watercolor artist. My motive in both forms of art is best summed up by this quote from Laura Ingalls Wilder:</p> 
+            <p><em>The true way to live is to enjoy every moment as it passes, and surely it is in the everyday things around us that the beauty of life lies.</em></p>
+            <p>My goal is to help you capture the moments before they pass, and to dwell in the beauty of the uniqueness of your life right now.</p> 
+            <p>I specialize in portrait photography, capturing families, friends, and individuals in whatever season of life they are in.</p> 
+            <p>Thank you for being here. I'm excited to work with you!</p>
+            <p>Every piece of art is printed on gallery-quality archival paper, and every session is guided to feel calm and effortless.</p>
+            <a href="#about" class="btn" style="margin-top: 16px;">Read My Full Story</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       ARTWORK PAGE (SHOP)
+       ========================================================================== -->
+    <section id="artwork" class="section">
+      <div class="container">
+        <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
+          <span class="subtitle">Original Works &amp; Prints</span>
+          <h2>The Art Gallery</h2>
+          <p>Archival quality fine-art prints, created from original paintings and medium-format photography. Printed on 100% cotton rag paper with subtle texture.</p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Artwork Product 1 -->
+          <div class="artwork-item card">
+            <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 1 Image]</div>
+            <div class="artwork-details">
+              <h3 class="card-title">Golden Fields at Sunset</h3>
+              <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm oil texture, muted ochre and blush tones. Printed on fine art rag.</p>
+              <div class="card-price">From $[125.00]</div>
+              <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
+              <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+            </div>
+          </div>
+
+          <!-- Artwork Product 2 -->
+          <div class="artwork-item card">
+            <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 2 Image]</div>
+            <div class="artwork-details">
+              <h3 class="card-title">Coastal Mist No. 2</h3>
+              <p style="font-size: 0.85rem; margin-bottom: 8px;">Soft, atmospheric blue and grey tones. Inspires calm and openness.</p>
+              <div class="card-price">From $[140.00]</div>
+              <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
+              <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+            </div>
+          </div>
+
+          <!-- Artwork Product 3 -->
+          <div class="artwork-item card">
+            <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 3 Image]</div>
+            <div class="artwork-details">
+              <h3 class="card-title">Solitude in Green</h3>
+              <p style="font-size: 0.85rem; margin-bottom: 8px;">Deep forest greens with soft ambient light highlights. Limited release.</p>
+              <div class="card-price">From $[120.00]</div>
+              <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
+              <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       PHOTOGRAPHY PAGE
+       ========================================================================== -->
+    <section id="photography" class="section section-alt">
+      <div class="container">
+        <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
+          <span class="subtitle">Family Imagery</span>
+          <h2>Warm, Natural Photography</h2>
+          <p>Honest portraiture for families who value authentic connection over stiff posing. Sessions are unhurried, natural, and comfortable.</p>
+        </div>
+
+        <!-- Large Portfolio Grid -->
+        <div class="portfolio-masonry">
+          <div class="card-image portfolio-img img-placeholder">[PLACEHOLDER: Family Portfolio 1]</div>
+          <div class="card-image portfolio-img vertical img-placeholder">[PLACEHOLDER: Family Portfolio 2]</div>
+          <div class="card-image portfolio-img img-placeholder">[PLACEHOLDER: Family Portfolio 3]</div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="text-center" style="margin-bottom: 40px;">
+          <span class="subtitle">Investment</span>
+          <h2>Session Offerings</h2>
+        </div>
+
+        <div class="grid-2" style="max-width: 900px; margin: 0 auto 60px auto;">
+          <!-- Package 1 -->
+          <div class="pricing-card">
+            <h3>The Classic Family Session</h3>
+            <div class="pricing-price">$[650]</div>
+            <p>Perfect for immediate families wishing to document this season of life.</p>
+            <ul class="pricing-features">
+              <li>60–90 minute session at golden hour</li>
+              <li>Location guidance &amp; wardrobe assistance</li>
+              <li>40+ high-resolution edited digital images</li>
+              <li>Online private gallery + print release</li>
+            </ul>
+            <!-- EXTERNAL BOOKING LINK PLACEHOLDER -->
+            <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
+          </div>
+
+          <!-- Package 2 -->
+          <div class="pricing-card">
+            <h3>At-Home Lifestyle Session</h3>
+            <div class="pricing-price">$[750]</div>
+            <p>Relaxed photography in the comfort of your home, capturing honest routines.</p>
+            <ul class="pricing-features">
+              <li>Up to 2 hours relaxed coverage</li>
+              <li>Focus on cozy, organic family dynamics</li>
+              <li>50+ high-resolution edited digital images</li>
+              <li>$50 print credit included</li>
+            </ul>
+            <!-- EXTERNAL BOOKING LINK PLACEHOLDER -->
+            <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div class="text-center">
+            <span class="subtitle">Common Questions</span>
+            <h3>Frequently Asked Questions</h3>
+          </div>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h4>What should we wear?</h4>
+              <p>I recommend soft, neutral tones, natural fabrics (linen, knits, soft cottons), and subtle textures. I provide a complete style guide upon booking.</p>
+            </div>
+            <div class="faq-item">
+              <h4>When is the best time for photos?</h4>
+              <p>Outdoor sessions take place about 90 minutes before sunset for the dreamiest, warmest light. In-home sessions take place late morning when daylight is brightest.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       ABOUT PAGE
+       ========================================================================== -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="about-full">
+          <div class="card-image artist-portrait img-placeholder">
+            [PLACEHOLDER: Portrait of You / Artist Photo]
+          </div>
+          <div>
+            <span class="subtitle">Artist &amp; Photographer</span>
+            <h2>Creating space for peace and memory.</h2>
+            <p>Welcome. I am [YOUR NAME], an artist and photographer located in [YOUR CITY/REGION].</p>
+            <p>My work across both painting and photography is rooted in the same philosophy: finding extraordinary grace in ordinary, quiet moments. Whether rendering fine-art prints or capturing your family’s unique warmth, my approach is intentional, soft, and enduring.</p>
+            <p>When I'm not behind the camera or in the studio, you can find me [INSERT PERSONAL DETAIL - e.g., spending time outdoors with my children, hunting for vintage frames, or drinking cold tea in the garden].</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       CONTACT PAGE
+       ========================================================================== -->
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <div class="contact-container text-center">
+          <span class="subtitle">Get in Touch</span>
+          <h2>Let's Connect</h2>
+          <p>Have a question regarding print sizing, custom artwork, or family booking dates? Send a message using the form below or reach out directly via email.</p>
+
+          <!-- Contact Form -->
+          <form style="margin-top: 40px; text-align: left;" action="https://formspree.io/f/[YOUR_FORMSPREE_ID]" method="POST">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" class="form-control" required placeholder="Jane Doe">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="_replyto" class="form-control" required placeholder="jane@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="interest">I am inquiring about</label>
+              <select id="interest" name="interest" class="form-control">
+                <option value="artwork">Fine Art Prints &amp; Paintings</option>
+                <option value="photography">Family Photography Session</option>
+                <option value="other">General Inquiry / Collaboration</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" class="form-control" required placeholder="Tell me a bit about what you're looking for..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <p style="margin: 0; font-family: var(--font-serif); font-size: 1.1rem; color: var(--text-main);">[Kaylee Lynn Studio]</p>
+        <p style="margin: 0; font-size: 0.8rem;">&copy; <span id="year"></span> [YOUR NAME]. All rights reserved.</p>
+      </div>
+
+      <ul class="social-links">
+        <li><a href="https://instagram.com/[YOUR_INSTAGRAM]" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="mailto:[YOUR_EMAIL@DOMAIN.COM]">Email Direct</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Simple JavaScript for Interactive Controls -->
+  <script>
+    // Auto Update Copyright Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Navigation Toggle Logic
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+
+    function closeMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
