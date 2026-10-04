@@ -234,6 +234,97 @@
       color: var(--accent);
     }
 
+    /* Dropdown Navigation */
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-link-dropdown {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dropdown-chevron {
+      transition: transform 0.25s ease;
+      opacity: 0.65;
+    }
+
+    .nav-dropdown:hover .dropdown-chevron,
+    .nav-dropdown:focus-within .dropdown-chevron {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      min-width: 200px;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px rgba(44, 40, 37, 0.08);
+      list-style: none;
+      padding: 8px 0;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      z-index: 1010;
+    }
+
+    /* Hit bridge to prevent mouse leaving between link and menu */
+    .dropdown-menu::before {
+      content: "";
+      position: absolute;
+      top: -16px;
+      left: 0;
+      right: 0;
+      height: 16px;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu li {
+      width: 100%;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-main);
+      white-space: nowrap;
+      transition: var(--transition);
+      text-align: left;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus {
+      background-color: var(--bg-alt);
+      color: var(--accent);
+      padding-left: 24px;
+    }
+
+    .dropdown-menu a.active {
+      border-bottom: none;
+      color: var(--accent);
+      background-color: var(--bg-alt);
+      font-weight: 500;
+    }
+
     /* Mobile Menu Toggle */
     .menu-toggle {
       display: none;
@@ -270,12 +361,167 @@
       width: 100%;
       height: 65vh;
       min-height: 450px;
+      position: relative;
     }
 
-    .hero-image-container img, .hero-image-container .img-placeholder {
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background-color: var(--bg-alt);
+    }
+
+    .hero-slides-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+
+    .hero-slide {
+      min-width: 100%;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .hero-slide-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    .hero-slide-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    /* CTA Box inside Slides */
+    .slide-cta-wrapper {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      text-align: center;
+      width: calc(100% - 48px);
+      max-width: 380px;
+      display: flex;
+      justify-content: center;
+      pointer-events: auto;
+    }
+
+    .slide-cta-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      background: rgba(253, 251, 247, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .slide-cta-box:hover {
+      background: var(--text-main);
+      color: #FFFFFF;
+      border-color: var(--text-main);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Slider Navigation Arrows */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(230, 224, 214, 0.8);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 12;
+      transition: var(--transition);
+      opacity: 0.85;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .slider-arrow:hover {
+      opacity: 1;
+      background: #FFFFFF;
+      color: var(--accent);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .slider-prev {
+      left: 18px;
+    }
+
+    .slider-next {
+      right: 18px;
+    }
+
+    /* Slider Indicators (Dots) */
+    .slider-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 12;
+      padding: 6px 12px;
+      background: rgba(253, 251, 247, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 20px;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    .slider-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 10px;
     }
 
     .hero-content {
@@ -637,6 +883,51 @@
         display: flex;
       }
 
+      .nav-dropdown {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .nav-dropdown .dropdown-chevron {
+        display: none;
+      }
+
+      .dropdown-menu {
+        position: static;
+        transform: none !important;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        padding: 8px 0 0 0;
+        min-width: unset;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .dropdown-menu::before {
+        display: none;
+      }
+
+      .dropdown-menu a {
+        text-align: center;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .dropdown-menu a:hover {
+        padding-left: 12px;
+        background-color: transparent;
+      }
+
       .social-card {
         width: 100%;
         min-width: 0;
@@ -687,7 +978,18 @@
       <nav>
         <ul class="nav-links" id="navLinks">
           <li><a href="#home" onclick="closeMenu()">Home</a></li>
-          <li><a href="#photography" onclick="closeMenu()">Photography</a></li>
+          <li class="nav-dropdown">
+            <a href="#photography" class="nav-link-dropdown" onclick="closeMenu()" aria-haspopup="true">
+              Photography
+              <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#photography-portfolio" onclick="closeMenu()">Portfolio</a></li>
+              <li><a href="#photography-pricing" onclick="closeMenu()">Pricing &amp; Booking</a></li>
+            </ul>
+          </li>
           <li><a href="#art" onclick="closeMenu()">Art</a></li>
           <li><a href="#about" onclick="closeMenu()">About</a></li>
           <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
@@ -706,9 +1008,57 @@
         <div class="container">
           <div class="hero-grid">
             <div class="hero-image-container">
-              <!-- PLACEHOLDER: Insert high-res feature image below -->
-              <div class="img-placeholder" style="height: 100%;">
-                [PLACEHOLDER: Main Hero Image - e.g., Family portrait or framed fine art print]
+              <div class="hero-slider" id="heroSlider" aria-roledescription="carousel" aria-label="Featured Photography &amp; Art Carousel">
+                <div class="hero-slides-track" id="heroSlidesTrack">
+                  <!-- Slide 1: Plain Photo -->
+                  <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="1 of 3: Featured Portrait">
+                    <img src="images/family-photography-sample-1.jpg" alt="Featured family portrait" class="hero-slide-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder hero-slide-placeholder" style="display: none;">
+                      [Slide 1: Family Portrait or Fine Art Print]
+                    </div>
+                  </div>
+
+                  <!-- Slide 2: Photo with 'Book a session' box linking to photography -->
+                  <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 3: Photography Sessions">
+                    <img src="images/hero-slide-2.jpg" alt="Family photography session" class="hero-slide-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder hero-slide-placeholder" style="display: flex;">
+                      [Slide 2: Family Photography Session]
+                    </div>
+                    <div class="slide-cta-wrapper">
+                      <a href="#photography" class="slide-cta-box">Book a session</a>
+                    </div>
+                  </div>
+
+                  <!-- Slide 3: Photo with 'shop prints' box linking to art -->
+                  <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 3: Fine Art Prints">
+                    <img src="images/hero-slide-3.jpg" alt="Fine art prints and paintings" class="hero-slide-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder hero-slide-placeholder" style="display: flex;">
+                      [Slide 3: Fine Art Prints &amp; Paintings]
+                    </div>
+                    <div class="slide-cta-wrapper">
+                      <a href="#art" class="slide-cta-box">shop prints</a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Navigation Arrows (Previous / Next) -->
+                <button class="slider-arrow slider-prev" id="sliderPrevBtn" aria-label="Previous slide" onclick="prevSlide(true)" type="button">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button class="slider-arrow slider-next" id="sliderNextBtn" aria-label="Next slide" onclick="nextSlide(true)" type="button">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+
+                <!-- Slide Indicators (Dots) -->
+                <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Slide Selection">
+                  <button class="slider-dot active" role="tab" aria-selected="true" aria-label="Slide 1" onclick="goToSlide(0, true)" type="button"></button>
+                  <button class="slider-dot" role="tab" aria-selected="false" aria-label="Slide 2" onclick="goToSlide(1, true)" type="button"></button>
+                  <button class="slider-dot" role="tab" aria-selected="false" aria-label="Slide 3" onclick="goToSlide(2, true)" type="button"></button>
+                </div>
               </div>
             </div>
             
@@ -763,7 +1113,7 @@
           </div>
           
           <div class="text-center" style="margin-top: 40px;">
-            <a href="#photography" class="btn">Explore Photography Sessions</a>
+            <a href="#photography-pricing" class="btn">Book your session</a>
           </div>
         </div>
       </section>
@@ -846,7 +1196,7 @@
     <div id="view-photography" class="page-view">
       <section id="photography" class="section">
         <div class="container">
-          <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
+          <div id="photography-portfolio" class="text-center" style="max-width: 600px; margin: 0 auto 60px auto; scroll-margin-top: 110px;">
             <span class="subtitle">Family Imagery</span>
             <h2>Warm, Natural Photography</h2>
             <p>Honest portraiture for families who value authentic connection over stiff posing. Sessions are unhurried, natural, and comfortable.</p>
@@ -860,7 +1210,7 @@
           </div>
 
           <!-- Pricing Section -->
-          <div class="text-center" style="margin-bottom: 40px;">
+          <div id="photography-pricing" class="text-center" style="margin-bottom: 40px; scroll-margin-top: 110px;">
             <span class="subtitle">Investment</span>
             <h2>Session Offerings</h2>
           </div>
@@ -1080,7 +1430,21 @@
     const validPages = ['home', 'photography', 'art', 'about', 'contact'];
 
     function navigateToPage(pageName, shouldScroll = true) {
-      const targetPage = validPages.includes(pageName) ? pageName : 'home';
+      let targetPage = pageName || 'home';
+      let scrollTargetId = null;
+
+      // Handle photography sub-sections
+      if (targetPage === 'photography-portfolio' || targetPage === 'portfolio') {
+        targetPage = 'photography';
+        scrollTargetId = 'photography-portfolio';
+      } else if (targetPage === 'photography-pricing' || targetPage === 'pricing' || targetPage === 'booking') {
+        targetPage = 'photography';
+        scrollTargetId = 'photography-pricing';
+      }
+
+      if (!validPages.includes(targetPage)) {
+        targetPage = 'home';
+      }
 
       // Toggle views
       document.querySelectorAll('.page-view').forEach(view => {
@@ -1094,9 +1458,14 @@
       // Update active state in top navigation
       document.querySelectorAll('.nav-links a').forEach(link => {
         const href = link.getAttribute('href');
-        if (href === '#' + targetPage) {
+        const isCurrentPage = href === '#' + targetPage;
+        const isSubActive = scrollTargetId && href === '#' + scrollTargetId;
+
+        if (isCurrentPage || isSubActive) {
           link.classList.add('active');
-          link.setAttribute('aria-current', 'page');
+          if (isSubActive || (!scrollTargetId && isCurrentPage)) {
+            link.setAttribute('aria-current', 'page');
+          }
         } else {
           link.classList.remove('active');
           link.removeAttribute('aria-current');
@@ -1104,7 +1473,24 @@
       });
 
       if (shouldScroll) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (scrollTargetId) {
+          setTimeout(() => {
+            const el = document.getElementById(scrollTargetId);
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }, 60);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      if (targetPage === 'home') {
+        startSlideTimer();
+      } else {
+        stopSlideTimer();
       }
 
       closeMenu();
@@ -1123,9 +1509,121 @@
       const link = e.target.closest('a[href^="#"]');
       if (!link) return;
       const target = link.getAttribute('href').replace('#', '').toLowerCase();
-      if (validPages.includes(target)) {
+      if (target) {
         if (window.location.hash === '#' + target || (target === 'home' && !window.location.hash)) {
           navigateToPage(target, true);
+        }
+      }
+    });
+
+    // ==========================================================================
+    // HERO REVOLVING PHOTO SLIDER LOGIC
+    // ==========================================================================
+    let currentSlide = 0;
+    const totalSlides = 3;
+    const slideDuration = 5000; // 5 seconds
+    let slideTimer = null;
+    let isSliderPaused = false;
+
+    function updateSliderPosition() {
+      const track = document.getElementById('heroSlidesTrack');
+      const dots = document.querySelectorAll('.slider-dot');
+      if (track) {
+        track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      }
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.add('active');
+          dot.setAttribute('aria-selected', 'true');
+        } else {
+          dot.classList.remove('active');
+          dot.setAttribute('aria-selected', 'false');
+        }
+      });
+    }
+
+    function goToSlide(index, userInitiated = false) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      updateSliderPosition();
+      if (userInitiated) {
+        restartSlideTimer();
+      }
+    }
+
+    function nextSlide(userInitiated = false) {
+      goToSlide(currentSlide + 1, userInitiated);
+    }
+
+    function prevSlide(userInitiated = false) {
+      goToSlide(currentSlide - 1, userInitiated);
+    }
+
+    function startSlideTimer() {
+      stopSlideTimer();
+      slideTimer = setInterval(() => {
+        if (!isSliderPaused) {
+          nextSlide(false);
+        }
+      }, slideDuration);
+    }
+
+    function stopSlideTimer() {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
+    }
+
+    function restartSlideTimer() {
+      startSlideTimer();
+    }
+
+    // Initialize touch and hover interactions for the slider
+    const heroSlider = document.getElementById('heroSlider');
+    if (heroSlider) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      heroSlider.addEventListener('mouseenter', () => { isSliderPaused = true; });
+      heroSlider.addEventListener('mouseleave', () => { isSliderPaused = false; });
+
+      heroSlider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      heroSlider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) {
+            nextSlide(true);
+          } else {
+            prevSlide(true);
+          }
+        }
+      }, { passive: true });
+    }
+
+    // Keyboard navigation (Left / Right arrow keys)
+    document.addEventListener('keydown', (e) => {
+      const homeView = document.getElementById('view-home');
+      if (homeView && homeView.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+          prevSlide(true);
+        } else if (e.key === 'ArrowRight') {
+          nextSlide(true);
+        }
+      }
+    });
+
+    // Pause autoplay when document is hidden (tab switch)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopSlideTimer();
+      } else {
+        const homeView = document.getElementById('view-home');
+        if (homeView && homeView.classList.contains('active')) {
+          startSlideTimer();
         }
       }
     });
@@ -1133,6 +1631,7 @@
     // Initialize state on load
     const initialHash = window.location.hash.replace('#', '').toLowerCase();
     navigateToPage(initialHash || 'home', false);
+    startSlideTimer();
   </script>
 </body>
 </html>
