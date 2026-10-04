@@ -512,6 +512,106 @@
     }
 
     /* ==========================================================================
+       PAGE ROUTING / SECTION VIEWS
+       ========================================================================== */
+    .page-view {
+      display: none;
+    }
+
+    .page-view.active {
+      display: block;
+      animation: pageFadeIn 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+      font-weight: 500;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
+    }
+
+    /* ==========================================================================
+       FOLLOW ALONG SECTION
+       ========================================================================== */
+    .follow-along-section {
+      background-color: var(--bg-main);
+      padding: 90px 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .social-cards-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .social-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 28px;
+      background-color: var(--bg-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      transition: var(--transition);
+      min-width: 250px;
+      text-align: left;
+    }
+
+    .social-card:hover {
+      border-color: var(--accent);
+      background-color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--bg-main);
+      color: var(--accent);
+      border: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .social-card-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .social-platform {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-main);
+    }
+
+    .social-handle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
        RESPONSIVE MOBILE STYLES
        ========================================================================== */
     @media (max-width: 768px) {
@@ -535,6 +635,11 @@
 
       .nav-links.active {
         display: flex;
+      }
+
+      .social-card {
+        width: 100%;
+        min-width: 0;
       }
 
       .about-preview, .about-full {
@@ -593,298 +698,346 @@
 
   <main>
     <!-- ==========================================================================
-       HOME PAGE
+       PAGE: HOME VIEW
        ========================================================================== -->
-    <section id="home" class="hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-image-container">
-            <!-- PLACEHOLDER: Insert high-res feature image below -->
-            <div class="img-placeholder" style="height: 100%;">
-              [PLACEHOLDER: Main Hero Image - e.g., Family portrait or framed fine art print]
+    <div id="view-home" class="page-view active">
+      <!-- Home: Hero Intro -->
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-image-container">
+              <!-- PLACEHOLDER: Insert high-res feature image below -->
+              <div class="img-placeholder" style="height: 100%;">
+                [PLACEHOLDER: Main Hero Image - e.g., Family portrait or framed fine art print]
+              </div>
             </div>
+            
+            <div class="hero-content">
+              <span class="subtitle">Photography &amp; Fine Art</span>
+              <h1>Kaylee Lynn Studio</h1>
+              <p>Capturing gentle, organic family imagery and creating fine-art landscape prints designed to bring peace and warmth to your home.</p>
+              
+              <div class="btn-group">
+                <a href="#photography" class="btn btn-primary">Book Photography</a>
+                <a href="#art" class="btn">Shop Artwork</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Home: Short About Preview -->
+      <section class="section section-alt">
+        <div class="container">
+          <div class="about-preview">
+            <div class="card-image img-placeholder" style="aspect-ratio: 4/5;">[PLACEHOLDER: Artist Portrait]</div>
+            <div>
+              <span class="subtitle">Behind the Lens &amp; Brush</span>
+              <h2>Hi, I'm Kaylee</h2>
+              <p>Hi, I'm Kaylee.</p>
+              <p>A photographer and watercolor artist. My motive in both forms of art is best summed up by this quote from Laura Ingalls Wilder:</p> 
+              <p><em>The true way to live is to enjoy every moment as it passes, and surely it is in the everyday things around us that the beauty of life lies.</em></p>
+              <p>My goal is to help you capture the moments before they pass, and to dwell in the beauty of the uniqueness of your life right now.</p> 
+              <p>I specialize in portrait photography, capturing families, friends, and individuals in whatever season of life they are in.</p> 
+              <p>Thank you for being here. I'm excited to work with you!</p>
+              <p>Every piece of art is printed on gallery-quality archival paper, and every session is guided to feel calm and effortless.</p>
+              <a href="#about" class="btn" style="margin-top: 16px;">Read My Full Story</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Home: Featured Photography Preview -->
+      <section class="section">
+        <div class="container">
+          <div class="text-center" style="margin-bottom: 40px;">
+            <span class="subtitle">Family Stories</span>
+            <h2>Photography Gallery</h2>
+          </div>
+
+          <div class="grid-2">
+            <div class="card-image" style="aspect-ratio: 3/2;">
+              <img src="images/family-photography-sample-1.jpg" alt="Black and white portrait of a young child smiling outdoors" loading="lazy">
+            </div>
+            <div class="card-image img-placeholder" style="aspect-ratio: 3/2;">[PLACEHOLDER: Family Photography Sample 2]</div>
           </div>
           
-          <div class="hero-content">
-            <span class="subtitle">Photography &amp; Fine Art</span>
-            <h1>Kaylee Lynn Studio</h1>
-            <p>Capturing gentle, organic family imagery and creating fine-art landscape prints designed to bring peace and warmth to your home.</p>
-            
-            <div class="btn-group">
-              <a href="#photography" class="btn btn-primary">Book Photography</a>
-              <a href="#art" class="btn">Shop Artwork</a>
+          <div class="text-center" style="margin-top: 40px;">
+            <a href="#photography" class="btn">Explore Photography Sessions</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Home: Featured Artwork Preview -->
+      <section class="section section-alt">
+        <div class="container">
+          <div class="text-center" style="margin-bottom: 40px;">
+            <span class="subtitle">Fine Art Collection</span>
+            <h2>Featured Prints</h2>
+          </div>
+
+          <div class="grid-3">
+            <!-- Featured Art 1 -->
+            <div class="card">
+              <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 1]</div>
+              <h3 class="card-title">Morning Light over Meadow</h3>
+              <div class="card-price">From $[120]</div>
+              <a href="#art" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
+            </div>
+            <!-- Featured Art 2 -->
+            <div class="card">
+              <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 2]</div>
+              <h3 class="card-title">Quiet Horizon No. 4</h3>
+              <div class="card-price">From $[140]</div>
+              <a href="#art" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
+            </div>
+            <!-- Featured Art 3 -->
+            <div class="card">
+              <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 3]</div>
+              <h3 class="card-title">Soft Pines in Mist</h3>
+              <div class="card-price">From $[120]</div>
+              <a href="#art" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Home: Short About Preview -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="about-preview">
-          <div class="card-image img-placeholder" style="aspect-ratio: 4/5;">[PLACEHOLDER: Artist Portrait]</div>
-          <div>
-            <span class="subtitle">Behind the Lens &amp; Brush</span>
-            <h2>Hi, I'm Kaylee</h2>
-            <p>Hi, I'm Kaylee.</p>
-            <p>A photographer and watercolor artist. My motive in both forms of art is best summed up by this quote from Laura Ingalls Wilder:</p> 
-            <p><em>The true way to live is to enjoy every moment as it passes, and surely it is in the everyday things around us that the beauty of life lies.</em></p>
-            <p>My goal is to help you capture the moments before they pass, and to dwell in the beauty of the uniqueness of your life right now.</p> 
-            <p>I specialize in portrait photography, capturing families, friends, and individuals in whatever season of life they are in.</p> 
-            <p>Thank you for being here. I'm excited to work with you!</p>
-            <p>Every piece of art is printed on gallery-quality archival paper, and every session is guided to feel calm and effortless.</p>
-            <a href="#about" class="btn" style="margin-top: 16px;">Read My Full Story</a>
+      <!-- Home: Follow Along -->
+      <section class="section follow-along-section">
+        <div class="container text-center" style="max-width: 640px;">
+          <span class="subtitle">Connect &amp; Community</span>
+          <h2>Follow Along</h2>
+          <p>I would love to connect with you! Follow along on social media for recent family sessions, studio updates, and upcoming artwork releases.</p>
+          
+          <div class="social-cards-grid">
+            <a href="https://instagram.com/[YOUR_INSTAGRAM]" target="_blank" rel="noopener" class="social-card">
+              <div class="social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <div class="social-card-text">
+                <span class="social-platform">Instagram</span>
+                <span class="social-handle">@[YOUR_INSTAGRAM]</span>
+              </div>
+            </a>
+
+            <a href="https://facebook.com/[YOUR_FACEBOOK]" target="_blank" rel="noopener" class="social-card">
+              <div class="social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </div>
+              <div class="social-card-text">
+                <span class="social-platform">Facebook</span>
+                <span class="social-handle">[YOUR_FACEBOOK_PAGE]</span>
+              </div>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Home: Featured Photography Preview -->
-    <section class="section">
-      <div class="container">
-        <div class="text-center" style="margin-bottom: 40px;">
-          <span class="subtitle">Family Stories</span>
-          <h2>Photography Gallery</h2>
-        </div>
-
-        <div class="grid-2">
-          <div class="card-image" style="aspect-ratio: 3/2;">
-            <img src="images/family-photography-sample-1.jpg" alt="Black and white portrait of a young child smiling outdoors" loading="lazy">
-          </div>
-          <div class="card-image img-placeholder" style="aspect-ratio: 3/2;">[PLACEHOLDER: Family Photography Sample 2]</div>
-        </div>
-        
-        <div class="text-center" style="margin-top: 40px;">
-          <a href="#photography" class="btn">Explore Photography Sessions</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Home: Featured Artwork Preview -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="text-center" style="margin-bottom: 40px;">
-          <span class="subtitle">Fine Art Collection</span>
-          <h2>Featured Prints</h2>
-        </div>
-
-        <div class="grid-3">
-          <!-- Featured Art 1 -->
-          <div class="card">
-            <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 1]</div>
-            <h3 class="card-title">Morning Light over Meadow</h3>
-            <div class="card-price">From $[120]</div>
-            <a href="#art" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
-          </div>
-          <!-- Featured Art 2 -->
-          <div class="card">
-            <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 2]</div>
-            <h3 class="card-title">Quiet Horizon No. 4</h3>
-            <div class="card-price">From $[140]</div>
-            <a href="#art" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
-          </div>
-          <!-- Featured Art 3 -->
-          <div class="card">
-            <div class="card-image img-placeholder">[PLACEHOLDER: Artwork 3]</div>
-            <h3 class="card-title">Soft Pines in Mist</h3>
-            <div class="card-price">From $[120]</div>
-            <a href="#art" class="btn" style="width: 100%; padding: 10px;">View Print Details</a>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- ==========================================================================
-       PHOTOGRAPHY PAGE
+       PAGE: PHOTOGRAPHY VIEW
        ========================================================================== -->
-    <section id="photography" class="section">
-      <div class="container">
-        <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
-          <span class="subtitle">Family Imagery</span>
-          <h2>Warm, Natural Photography</h2>
-          <p>Honest portraiture for families who value authentic connection over stiff posing. Sessions are unhurried, natural, and comfortable.</p>
-        </div>
-
-        <!-- Large Portfolio Grid -->
-        <div class="portfolio-masonry">
-          <div class="card-image portfolio-img img-placeholder">[PLACEHOLDER: Family Portfolio 1]</div>
-          <div class="card-image portfolio-img vertical img-placeholder">[PLACEHOLDER: Family Portfolio 2]</div>
-          <div class="card-image portfolio-img img-placeholder">[PLACEHOLDER: Family Portfolio 3]</div>
-        </div>
-
-        <!-- Pricing Section -->
-        <div class="text-center" style="margin-bottom: 40px;">
-          <span class="subtitle">Investment</span>
-          <h2>Session Offerings</h2>
-        </div>
-
-        <div class="grid-2" style="max-width: 900px; margin: 0 auto 60px auto;">
-          <!-- Package 1 -->
-          <div class="pricing-card">
-            <h3>The Classic Family Session</h3>
-            <div class="pricing-price">$[650]</div>
-            <p>Perfect for immediate families wishing to document this season of life.</p>
-            <ul class="pricing-features">
-              <li>60–90 minute session at golden hour</li>
-              <li>Location guidance &amp; wardrobe assistance</li>
-              <li>40+ high-resolution edited digital images</li>
-              <li>Online private gallery + print release</li>
-            </ul>
-            <!-- EXTERNAL BOOKING LINK PLACEHOLDER -->
-            <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
+    <div id="view-photography" class="page-view">
+      <section id="photography" class="section">
+        <div class="container">
+          <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
+            <span class="subtitle">Family Imagery</span>
+            <h2>Warm, Natural Photography</h2>
+            <p>Honest portraiture for families who value authentic connection over stiff posing. Sessions are unhurried, natural, and comfortable.</p>
           </div>
 
-          <!-- Package 2 -->
-          <div class="pricing-card">
-            <h3>At-Home Lifestyle Session</h3>
-            <div class="pricing-price">$[750]</div>
-            <p>Relaxed photography in the comfort of your home, capturing honest routines.</p>
-            <ul class="pricing-features">
-              <li>Up to 2 hours relaxed coverage</li>
-              <li>Focus on cozy, organic family dynamics</li>
-              <li>50+ high-resolution edited digital images</li>
-              <li>$50 print credit included</li>
-            </ul>
-            <!-- EXTERNAL BOOKING LINK PLACEHOLDER -->
-            <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
+          <!-- Large Portfolio Grid -->
+          <div class="portfolio-masonry">
+            <div class="card-image portfolio-img img-placeholder">[PLACEHOLDER: Family Portfolio 1]</div>
+            <div class="card-image portfolio-img vertical img-placeholder">[PLACEHOLDER: Family Portfolio 2]</div>
+            <div class="card-image portfolio-img img-placeholder">[PLACEHOLDER: Family Portfolio 3]</div>
           </div>
-        </div>
 
-        <!-- FAQ Section -->
-        <div style="max-width: 800px; margin: 0 auto;">
-          <div class="text-center">
-            <span class="subtitle">Common Questions</span>
-            <h3>Frequently Asked Questions</h3>
+          <!-- Pricing Section -->
+          <div class="text-center" style="margin-bottom: 40px;">
+            <span class="subtitle">Investment</span>
+            <h2>Session Offerings</h2>
           </div>
-          <div class="faq-grid">
-            <div class="faq-item">
-              <h4>What should we wear?</h4>
-              <p>I recommend soft, neutral tones, natural fabrics (linen, knits, soft cottons), and subtle textures. I provide a complete style guide upon booking.</p>
+
+          <div class="grid-2" style="max-width: 900px; margin: 0 auto 60px auto;">
+            <!-- Package 1 -->
+            <div class="pricing-card">
+              <h3>The Classic Family Session</h3>
+              <div class="pricing-price">$[650]</div>
+              <p>Perfect for immediate families wishing to document this season of life.</p>
+              <ul class="pricing-features">
+                <li>60–90 minute session at golden hour</li>
+                <li>Location guidance &amp; wardrobe assistance</li>
+                <li>40+ high-resolution edited digital images</li>
+                <li>Online private gallery + print release</li>
+              </ul>
+              <!-- EXTERNAL BOOKING LINK PLACEHOLDER -->
+              <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
             </div>
-            <div class="faq-item">
-              <h4>When is the best time for photos?</h4>
-              <p>Outdoor sessions take place about 90 minutes before sunset for the dreamiest, warmest light. In-home sessions take place late morning when daylight is brightest.</p>
+
+            <!-- Package 2 -->
+            <div class="pricing-card">
+              <h3>At-Home Lifestyle Session</h3>
+              <div class="pricing-price">$[750]</div>
+              <p>Relaxed photography in the comfort of your home, capturing honest routines.</p>
+              <ul class="pricing-features">
+                <li>Up to 2 hours relaxed coverage</li>
+                <li>Focus on cozy, organic family dynamics</li>
+                <li>50+ high-resolution edited digital images</li>
+                <li>$50 print credit included</li>
+              </ul>
+              <!-- EXTERNAL BOOKING LINK PLACEHOLDER -->
+              <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
             </div>
           </div>
-        </div>
 
-      </div>
-    </section>
+          <!-- FAQ Section -->
+          <div style="max-width: 800px; margin: 0 auto;">
+            <div class="text-center">
+              <span class="subtitle">Common Questions</span>
+              <h3>Frequently Asked Questions</h3>
+            </div>
+            <div class="faq-grid">
+              <div class="faq-item">
+                <h4>What should we wear?</h4>
+                <p>I recommend soft, neutral tones, natural fabrics (linen, knits, soft cottons), and subtle textures. I provide a complete style guide upon booking.</p>
+              </div>
+              <div class="faq-item">
+                <h4>When is the best time for photos?</h4>
+                <p>Outdoor sessions take place about 90 minutes before sunset for the dreamiest, warmest light. In-home sessions take place late morning when daylight is brightest.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
 
     <!-- ==========================================================================
-       ARTWORK PAGE (SHOP)
+       PAGE: ARTWORK VIEW
        ========================================================================== -->
-    <section id="art" class="section section-alt">
-      <div id="artwork"></div>
-      <div class="container">
-        <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
-          <span class="subtitle">Original Works &amp; Prints</span>
-          <h2>The Art Gallery</h2>
-          <p>Archival quality fine-art prints, created from original paintings and medium-format photography. Printed on 100% cotton rag paper with subtle texture.</p>
+    <div id="view-art" class="page-view">
+      <section id="art" class="section">
+        <div id="artwork"></div>
+        <div class="container">
+          <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
+            <span class="subtitle">Original Works &amp; Prints</span>
+            <h2>The Art Gallery</h2>
+            <p>Archival quality fine-art prints, created from original paintings and medium-format photography. Printed on 100% cotton rag paper with subtle texture.</p>
+          </div>
+
+          <div class="grid-3">
+            <!-- Artwork Product 1 -->
+            <div class="artwork-item card">
+              <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 1 Image]</div>
+              <div class="artwork-details">
+                <h3 class="card-title">Golden Fields at Sunset</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm oil texture, muted ochre and blush tones. Printed on fine art rag.</p>
+                <div class="card-price">From $[125.00]</div>
+                <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
+                <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+              </div>
+            </div>
+
+            <!-- Artwork Product 2 -->
+            <div class="artwork-item card">
+              <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 2 Image]</div>
+              <div class="artwork-details">
+                <h3 class="card-title">Coastal Mist No. 2</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 8px;">Soft, atmospheric blue and grey tones. Inspires calm and openness.</p>
+                <div class="card-price">From $[140.00]</div>
+                <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
+                <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+              </div>
+            </div>
+
+            <!-- Artwork Product 3 -->
+            <div class="artwork-item card">
+              <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 3 Image]</div>
+              <div class="artwork-details">
+                <h3 class="card-title">Solitude in Green</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 8px;">Deep forest greens with soft ambient light highlights. Limited release.</p>
+                <div class="card-price">From $[120.00]</div>
+                <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
+                <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="grid-3">
-          <!-- Artwork Product 1 -->
-          <div class="artwork-item card">
-            <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 1 Image]</div>
-            <div class="artwork-details">
-              <h3 class="card-title">Golden Fields at Sunset</h3>
-              <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm oil texture, muted ochre and blush tones. Printed on fine art rag.</p>
-              <div class="card-price">From $[125.00]</div>
-              <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
-              <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-            </div>
-          </div>
-
-          <!-- Artwork Product 2 -->
-          <div class="artwork-item card">
-            <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 2 Image]</div>
-            <div class="artwork-details">
-              <h3 class="card-title">Coastal Mist No. 2</h3>
-              <p style="font-size: 0.85rem; margin-bottom: 8px;">Soft, atmospheric blue and grey tones. Inspires calm and openness.</p>
-              <div class="card-price">From $[140.00]</div>
-              <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
-              <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-            </div>
-          </div>
-
-          <!-- Artwork Product 3 -->
-          <div class="artwork-item card">
-            <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 3 Image]</div>
-            <div class="artwork-details">
-              <h3 class="card-title">Solitude in Green</h3>
-              <p style="font-size: 0.85rem; margin-bottom: 8px;">Deep forest greens with soft ambient light highlights. Limited release.</p>
-              <div class="card-price">From $[120.00]</div>
-              <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
-              <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- ==========================================================================
-       ABOUT PAGE
+       PAGE: ABOUT VIEW
        ========================================================================== -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="about-full">
-          <div class="card-image artist-portrait img-placeholder">
-            [PLACEHOLDER: Portrait of You / Artist Photo]
-          </div>
-          <div>
-            <span class="subtitle">Photographer &amp; Artist</span>
-            <h2>Creating space for peace and memory.</h2>
-            <p>Welcome. I am [YOUR NAME], a photographer and artist located in [YOUR CITY/REGION].</p>
-            <p>My work across both photography and painting is rooted in the same philosophy: finding extraordinary grace in ordinary, quiet moments. Whether capturing your family’s unique warmth or rendering fine-art prints, my approach is intentional, soft, and enduring.</p>
-            <p>When I'm not behind the camera or in the studio, you can find me [INSERT PERSONAL DETAIL - e.g., spending time outdoors with my children, hunting for vintage frames, or drinking cold tea in the garden].</p>
+    <div id="view-about" class="page-view">
+      <section id="about" class="section">
+        <div class="container">
+          <div class="about-full">
+            <div class="card-image artist-portrait img-placeholder">
+              [PLACEHOLDER: Portrait of You / Artist Photo]
+            </div>
+            <div>
+              <span class="subtitle">Photographer &amp; Artist</span>
+              <h2>Creating space for peace and memory.</h2>
+              <p>Welcome. I am [YOUR NAME], a photographer and artist located in [YOUR CITY/REGION].</p>
+              <p>My work across both photography and painting is rooted in the same philosophy: finding extraordinary grace in ordinary, quiet moments. Whether capturing your family’s unique warmth or rendering fine-art prints, my approach is intentional, soft, and enduring.</p>
+              <p>When I'm not behind the camera or in the studio, you can find me [INSERT PERSONAL DETAIL - e.g., spending time outdoors with my children, hunting for vintage frames, or drinking cold tea in the garden].</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- ==========================================================================
-       CONTACT PAGE
+       PAGE: CONTACT VIEW
        ========================================================================== -->
-    <section id="contact" class="section section-alt">
-      <div class="container">
-        <div class="contact-container text-center">
-          <span class="subtitle">Get in Touch</span>
-          <h2>Let's Connect</h2>
-          <p>Have a question regarding family booking dates, print sizing, or custom artwork? Send a message using the form below or reach out directly via email.</p>
+    <div id="view-contact" class="page-view">
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="contact-container text-center">
+            <span class="subtitle">Get in Touch</span>
+            <h2>Let's Connect</h2>
+            <p>Have a question regarding family booking dates, print sizing, or custom artwork? Send a message using the form below or reach out directly via email.</p>
 
-          <!-- Contact Form -->
-          <form style="margin-top: 40px; text-align: left;" action="https://formspree.io/f/[YOUR_FORMSPREE_ID]" method="POST">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" class="form-control" required placeholder="Jane Doe">
-            </div>
+            <!-- Contact Form -->
+            <form style="margin-top: 40px; text-align: left;" action="https://formspree.io/f/[YOUR_FORMSPREE_ID]" method="POST">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" class="form-control" required placeholder="Jane Doe">
+              </div>
 
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="_replyto" class="form-control" required placeholder="jane@example.com">
-            </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="_replyto" class="form-control" required placeholder="jane@example.com">
+              </div>
 
-            <div class="form-group">
-              <label for="interest">I am inquiring about</label>
-              <select id="interest" name="interest" class="form-control">
-                <option value="photography">Family Photography Session</option>
-                <option value="artwork">Fine Art Prints &amp; Paintings</option>
-                <option value="other">General Inquiry / Collaboration</option>
-              </select>
-            </div>
+              <div class="form-group">
+                <label for="interest">I am inquiring about</label>
+                <select id="interest" name="interest" class="form-control">
+                  <option value="photography">Family Photography Session</option>
+                  <option value="artwork">Fine Art Prints &amp; Paintings</option>
+                  <option value="other">General Inquiry / Collaboration</option>
+                </select>
+              </div>
 
-            <div class="form-group">
-              <label for="message">Your Message</label>
-              <textarea id="message" name="message" class="form-control" required placeholder="Tell me a bit about what you're looking for..."></textarea>
-            </div>
+              <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" class="form-control" required placeholder="Tell me a bit about what you're looking for..."></textarea>
+              </div>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-          </form>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <!-- ==========================================================================
@@ -899,12 +1052,13 @@
 
       <ul class="social-links">
         <li><a href="https://instagram.com/[YOUR_INSTAGRAM]" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://facebook.com/[YOUR_FACEBOOK]" target="_blank" rel="noopener">Facebook</a></li>
         <li><a href="mailto:[YOUR_EMAIL@DOMAIN.COM]">Email Direct</a></li>
       </ul>
     </div>
   </footer>
 
-  <!-- Simple JavaScript for Interactive Controls -->
+  <!-- JavaScript for Interactive Controls & Section Navigation -->
   <script>
     // Auto Update Copyright Year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -917,8 +1071,68 @@
 
     function closeMenu() {
       const navLinks = document.getElementById('navLinks');
-      navLinks.classList.remove('active');
+      if (navLinks) {
+        navLinks.classList.remove('active');
+      }
     }
+
+    // Page Routing / Section View Logic
+    const validPages = ['home', 'photography', 'art', 'about', 'contact'];
+
+    function navigateToPage(pageName, shouldScroll = true) {
+      const targetPage = validPages.includes(pageName) ? pageName : 'home';
+
+      // Toggle views
+      document.querySelectorAll('.page-view').forEach(view => {
+        if (view.id === 'view-' + targetPage) {
+          view.classList.add('active');
+        } else {
+          view.classList.remove('active');
+        }
+      });
+
+      // Update active state in top navigation
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === '#' + targetPage) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      });
+
+      if (shouldScroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      closeMenu();
+    }
+
+    function handleRoute() {
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      navigateToPage(hash || 'home', true);
+    }
+
+    // Listen for hash changes (browser back/forward & in-page navigation)
+    window.addEventListener('hashchange', handleRoute);
+
+    // Click handler for hash navigation links
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const target = link.getAttribute('href').replace('#', '').toLowerCase();
+      if (validPages.includes(target)) {
+        if (window.location.hash === '#' + target || (target === 'home' && !window.location.hash)) {
+          navigateToPage(target, true);
+        }
+      }
+    });
+
+    // Initialize state on load
+    const initialHash = window.location.hash.replace('#', '').toLowerCase();
+    navigateToPage(initialHash || 'home', false);
   </script>
 </body>
 </html>
