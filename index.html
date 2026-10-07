@@ -1012,7 +1012,7 @@
                 <div class="hero-slides-track" id="heroSlidesTrack">
                   <!-- Slide 1: Plain Photo -->
                   <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="1 of 3: Featured Portrait">
-                    <img src="images/family-photography-sample-1.jpg" alt="Featured family portrait" class="hero-slide-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/hero-slide-1.jpg" alt="Featured family portrait on swing" class="hero-slide-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="img-placeholder hero-slide-placeholder" style="display: none;">
                       [Slide 1: Family Portrait or Fine Art Print]
                     </div>
@@ -1525,7 +1525,6 @@
     const totalSlides = 3;
     const slideDuration = 5000; // 5 seconds
     let slideTimer = null;
-    let isSliderPaused = false;
 
     function updateSliderPosition() {
       const track = document.getElementById('heroSlidesTrack');
@@ -1562,10 +1561,12 @@
 
     function startSlideTimer() {
       stopSlideTimer();
+      const homeView = document.getElementById('view-home');
+      if (homeView && !homeView.classList.contains('active')) {
+        return;
+      }
       slideTimer = setInterval(() => {
-        if (!isSliderPaused) {
-          nextSlide(false);
-        }
+        nextSlide(false);
       }, slideDuration);
     }
 
@@ -1580,14 +1581,11 @@
       startSlideTimer();
     }
 
-    // Initialize touch and hover interactions for the slider
+    // Initialize touch swipe interactions for the slider
     const heroSlider = document.getElementById('heroSlider');
     if (heroSlider) {
       let touchStartX = 0;
       let touchEndX = 0;
-
-      heroSlider.addEventListener('mouseenter', () => { isSliderPaused = true; });
-      heroSlider.addEventListener('mouseleave', () => { isSliderPaused = false; });
 
       heroSlider.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
