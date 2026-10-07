@@ -263,7 +263,7 @@
       top: 100%;
       left: 50%;
       transform: translateX(-50%) translateY(8px);
-      min-width: 200px;
+      min-width: 230px;
       background-color: var(--bg-main);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
@@ -318,11 +318,23 @@
       padding-left: 24px;
     }
 
+    .nav-links .dropdown-menu a.active,
     .dropdown-menu a.active {
-      border-bottom: none;
+      border-bottom: none !important;
       color: var(--accent);
       background-color: var(--bg-alt);
       font-weight: 500;
+    }
+
+    .art-category-section {
+      scroll-margin-top: 110px;
+    }
+
+    .art-category-divider {
+      border: 0;
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 70px 0;
     }
 
     /* Mobile Menu Toggle */
@@ -990,7 +1002,20 @@
               <li><a href="#photography-pricing" onclick="closeMenu()">Pricing &amp; Booking</a></li>
             </ul>
           </li>
-          <li><a href="#art" onclick="closeMenu()">Art</a></li>
+          <li class="nav-dropdown">
+            <a href="#art" class="nav-link-dropdown" onclick="closeMenu()" aria-haspopup="true">
+              Art
+              <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#art-christian" onclick="closeMenu()">Christian Prints</a></li>
+              <li><a href="#art-family" onclick="closeMenu()">Family/Children Prints</a></li>
+              <li><a href="#art-nature" onclick="closeMenu()">Nature Prints</a></li>
+              <li><a href="#art-custom" onclick="closeMenu()">Custom Family Art</a></li>
+            </ul>
+          </li>
           <li><a href="#about" onclick="closeMenu()">About</a></li>
           <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
         </ul>
@@ -1275,47 +1300,220 @@
       <section id="art" class="section">
         <div id="artwork"></div>
         <div class="container">
-          <div class="text-center" style="max-width: 600px; margin: 0 auto 60px auto;">
+          <div class="text-center" style="max-width: 650px; margin: 0 auto 60px auto;">
             <span class="subtitle">Original Works &amp; Prints</span>
             <h2>The Art Gallery</h2>
-            <p>Archival quality fine-art prints, created from original paintings and medium-format photography. Printed on 100% cotton rag paper with subtle texture.</p>
+            <p>Archival quality fine-art prints created from original paintings and medium-format photography, alongside bespoke family commissions. Printed on 100% cotton rag paper with subtle texture and enduring pigment.</p>
           </div>
 
-          <div class="grid-3">
-            <!-- Artwork Product 1 -->
-            <div class="artwork-item card">
-              <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 1 Image]</div>
-              <div class="artwork-details">
-                <h3 class="card-title">Golden Fields at Sunset</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm oil texture, muted ochre and blush tones. Printed on fine art rag.</p>
-                <div class="card-price">From $[125.00]</div>
-                <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
-                <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+          <!-- ==========================================================================
+             SECTION 1: CHRISTIAN PRINTS
+             ========================================================================== -->
+          <div id="art-christian" class="art-category-section" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Faith &amp; Devotion</span>
+              <h2>Christian Prints</h2>
+              <p>Reverent, peaceful artwork honoring Christ and sacred spiritual moments. Designed to bring stillness, comfort, and devotion to your home.</p>
+            </div>
+
+            <div class="grid-3">
+              <!-- Christian Print 1 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Christian Print 1 - Christ &amp; Children]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Peace in His Presence</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Gentle brushwork and luminous earth tones depicting quiet solace and hope.</p>
+                  <div class="card-price">From $[120.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Christian Print 2 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Christian Print 2 - The Shepherd]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">The Shepherd's Watch</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm textural oils capturing watchful love and enduring protection.</p>
+                  <div class="card-price">From $[135.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Christian Print 3 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Christian Print 3 - Light on the Path]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Walk by Faith</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Soft morning light and atmospheric warmth symbolizing guided footsteps.</p>
+                  <div class="card-price">From $[120.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="art-category-divider">
+
+          <!-- ==========================================================================
+             SECTION 2: FAMILY / CHILDREN PRINTS
+             ========================================================================== -->
+          <div id="art-family" class="art-category-section" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Childhood &amp; Kinship</span>
+              <h2>Family/Children Prints</h2>
+              <p>Honest, tender art celebrating the innocence of childhood, motherly affection, and the sweet everyday rhythms of home life.</p>
+            </div>
+
+            <div class="grid-3">
+              <!-- Family Print 1 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Family Print 1 - Mother's Lullaby]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Mother's Lullaby</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Quiet, tender watercolor tones capturing sweet moments of maternal embrace.</p>
+                  <div class="card-price">From $[115.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Family Print 2 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Family Print 2 - Wildflower Meadow]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Wildflower Gatherers</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Nostalgic golden hues honoring carefree afternoons in open fields.</p>
+                  <div class="card-price">From $[125.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Family Print 3 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Family Print 3 - Sibling Stories]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Sibling Stories</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm neutral palette celebrating quiet sisterly and brotherly bonds.</p>
+                  <div class="card-price">From $[120.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="art-category-divider">
+
+          <!-- ==========================================================================
+             SECTION 3: NATURE PRINTS
+             ========================================================================== -->
+          <div id="art-nature" class="art-category-section" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Landscapes &amp; Botanicals</span>
+              <h2>Nature Prints</h2>
+              <p>Quiet landscapes, organic botanical studies, and open horizons rendered in soft, calming color palettes to ground your home.</p>
+            </div>
+
+            <div class="grid-3">
+              <!-- Nature Print 1 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 1 Image]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Golden Fields at Sunset</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm oil texture, muted ochre and blush tones. Printed on fine art rag.</p>
+                  <div class="card-price">From $[125.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Nature Print 2 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 2 Image]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Coastal Mist No. 2</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Soft, atmospheric blue and grey tones. Inspires calm and openness.</p>
+                  <div class="card-price">From $[140.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Nature Print 3 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 3 Image]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Solitude in Green</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Deep forest greens with soft ambient light highlights. Limited release.</p>
+                  <div class="card-price">From $[120.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="art-category-divider">
+
+          <!-- ==========================================================================
+             SECTION 4: CUSTOM FAMILY ART
+             ========================================================================== -->
+          <div id="art-custom" class="art-category-section" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Bespoke Commissions</span>
+              <h2>Custom Family Art</h2>
+              <p>Original commissioned paintings and custom heirloom artwork created uniquely for your family—bringing your most cherished memories to life on canvas or paper.</p>
+            </div>
+
+            <div class="grid-3">
+              <!-- Custom Offering 1 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Custom Family Portrait Painting]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Custom Family Portrait</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Original hand-painted portrait crafted from your favorite family photos in soft, timeless watercolors or oils.</p>
+                  <div class="card-price">Commissions from $[350]</div>
+                  <a href="#contact" class="btn btn-primary" style="width: 100%;">Inquire / Commission</a>
+                </div>
+              </div>
+
+              <!-- Custom Offering 2 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Custom Home Portrait Painting]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Family Home Illustration</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Archival watercolor illustration of your family's first home, childhood house, or sacred gathering place.</p>
+                  <div class="card-price">Commissions from $[250]</div>
+                  <a href="#contact" class="btn btn-primary" style="width: 100%;">Inquire / Commission</a>
+                </div>
+              </div>
+
+              <!-- Custom Offering 3 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Custom Keepsake Commission]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Heirloom Keepsake Commission</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">A tailored collaboration featuring personalized scripture, symbolic florals, or special family milestones.</p>
+                  <div class="card-price">Commissions from $[300]</div>
+                  <a href="#contact" class="btn btn-primary" style="width: 100%;">Inquire / Commission</a>
+                </div>
               </div>
             </div>
 
-            <!-- Artwork Product 2 -->
-            <div class="artwork-item card">
-              <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 2 Image]</div>
-              <div class="artwork-details">
-                <h3 class="card-title">Coastal Mist No. 2</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 8px;">Soft, atmospheric blue and grey tones. Inspires calm and openness.</p>
-                <div class="card-price">From $[140.00]</div>
-                <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
-                <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+            <!-- Custom Commission Process Box -->
+            <div style="margin-top: 50px; background-color: var(--bg-alt); padding: 40px 32px; border: 1px solid var(--border-color); border-radius: var(--radius); text-align: center;">
+              <span class="subtitle">The Commission Process</span>
+              <h3 style="margin-bottom: 16px;">How Custom Artwork Works</h3>
+              <div class="grid-3" style="text-align: left; margin: 30px 0 24px 0; gap: 24px;">
+                <div>
+                  <h4 style="font-size: 1.1rem; margin-bottom: 6px;">1. Connect &amp; Share</h4>
+                  <p style="font-size: 0.85rem; margin: 0;">Submit an inquiry with your preferred sizing, inspiration photos, and vision for the piece.</p>
+                </div>
+                <div>
+                  <h4 style="font-size: 1.1rem; margin-bottom: 6px;">2. Studio Creation</h4>
+                  <p style="font-size: 0.85rem; margin: 0;">Kaylee hand-paints your piece with premium pigments, sharing a progress preview for alignment.</p>
+                </div>
+                <div>
+                  <h4 style="font-size: 1.1rem; margin-bottom: 6px;">3. Delivery &amp; Joy</h4>
+                  <p style="font-size: 0.85rem; margin: 0;">Your original art arrives safely packaged with framing guidance, ready to be treasured for generations.</p>
+                </div>
               </div>
-            </div>
-
-            <!-- Artwork Product 3 -->
-            <div class="artwork-item card">
-              <div class="card-image img-placeholder">[PLACEHOLDER: Painting/Print 3 Image]</div>
-              <div class="artwork-details">
-                <h3 class="card-title">Solitude in Green</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 8px;">Deep forest greens with soft ambient light highlights. Limited release.</p>
-                <div class="card-price">From $[120.00]</div>
-                <!-- EXTERNAL SHOP LINK PLACEHOLDER -->
-                <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-              </div>
+              <a href="#contact" class="btn btn-primary" style="margin-top: 8px;">Start Your Custom Commission</a>
             </div>
           </div>
         </div>
@@ -1375,6 +1573,7 @@
                 <select id="interest" name="interest" class="form-control">
                   <option value="photography">Family Photography Session</option>
                   <option value="artwork">Fine Art Prints &amp; Paintings</option>
+                  <option value="custom-art">Custom Family Art Commission</option>
                   <option value="other">General Inquiry / Collaboration</option>
                 </select>
               </div>
@@ -1444,6 +1643,23 @@
         scrollTargetId = 'photography-pricing';
       }
 
+      // Handle art sub-sections
+      if (targetPage === 'art-christian' || targetPage === 'christian-prints' || targetPage === 'christian') {
+        targetPage = 'art';
+        scrollTargetId = 'art-christian';
+      } else if (targetPage === 'art-family' || targetPage === 'family-children-prints' || targetPage === 'family-prints' || targetPage === 'children-prints' || targetPage === 'family') {
+        targetPage = 'art';
+        scrollTargetId = 'art-family';
+      } else if (targetPage === 'art-nature' || targetPage === 'nature-prints' || targetPage === 'nature') {
+        targetPage = 'art';
+        scrollTargetId = 'art-nature';
+      } else if (targetPage === 'art-custom' || targetPage === 'custom-family-art' || targetPage === 'custom-art' || targetPage === 'custom-family' || targetPage === 'custom') {
+        targetPage = 'art';
+        scrollTargetId = 'art-custom';
+      } else if (targetPage === 'artwork') {
+        targetPage = 'art';
+      }
+
       if (!validPages.includes(targetPage)) {
         targetPage = 'home';
       }
@@ -1487,6 +1703,13 @@
         } else {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+      } else if (scrollTargetId) {
+        setTimeout(() => {
+          const el = document.getElementById(scrollTargetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'auto', block: 'start' });
+          }
+        }, 80);
       }
 
       if (targetPage === 'home') {
