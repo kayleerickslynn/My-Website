@@ -1003,7 +1003,8 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="#photography-portfolio" onclick="closeMenu()">Portfolio</a></li>
-              <li><a href="#photography-pricing" onclick="closeMenu()">Pricing &amp; Booking</a></li>
+              <li><a href="#photography-pricing" onclick="closeMenu()">Sessions and Pricing</a></li>
+              <li><a href="#photography-booking" onclick="closeMenu()">Book Now</a></li>
             </ul>
           </li>
           <li class="nav-dropdown">
@@ -1243,7 +1244,7 @@
             <h2>Session Offerings</h2>
           </div>
 
-          <div class="grid-2" style="max-width: 900px; margin: 0 auto 60px auto;">
+          <div id="photography-booking" class="grid-2" style="max-width: 900px; margin: 0 auto 60px auto; scroll-margin-top: 110px;">
             <!-- Package 1 -->
             <div class="pricing-card">
               <h3>The Classic Family Session</h3>
@@ -1642,9 +1643,12 @@
       if (targetPage === 'photography-portfolio' || targetPage === 'portfolio') {
         targetPage = 'photography';
         scrollTargetId = 'photography-portfolio';
-      } else if (targetPage === 'photography-pricing' || targetPage === 'pricing' || targetPage === 'booking') {
+      } else if (targetPage === 'photography-pricing' || targetPage === 'pricing' || targetPage === 'sessions-and-pricing' || targetPage === 'sessions') {
         targetPage = 'photography';
         scrollTargetId = 'photography-pricing';
+      } else if (targetPage === 'photography-booking' || targetPage === 'booking' || targetPage === 'book-now' || targetPage === 'book') {
+        targetPage = 'photography';
+        scrollTargetId = 'photography-booking';
       }
 
       // Handle art sub-sections
