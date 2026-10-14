@@ -151,6 +151,10 @@
       flex-wrap: wrap;
     }
 
+    .btn-group-center {
+      justify-content: center;
+    }
+
     /* Container */
     .container {
       max-width: var(--max-width);
@@ -389,7 +393,7 @@
       display: flex;
       width: 100%;
       height: 100%;
-      transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
       will-change: transform;
     }
 
@@ -527,7 +531,7 @@
       background: transparent;
       cursor: pointer;
       padding: 0;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .slider-dot.active {
@@ -1746,7 +1750,7 @@
     // ==========================================================================
     let currentSlide = 0;
     const totalSlides = 3;
-    const slideDuration = 3000; // 3 seconds
+    const slideDuration = 5000; // 5 seconds
     let slideTimer = null;
 
     function updateSliderPosition() {
