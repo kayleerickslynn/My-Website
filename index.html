@@ -685,6 +685,271 @@
     }
 
     /* ==========================================================================
+       MINI SESSION SCHEDULING MODAL & SLOTS
+       ========================================================================== */
+    dialog.booking-modal {
+      margin: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      max-width: 680px;
+      width: 92vw;
+      max-height: 88vh;
+      padding: 0;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    dialog.booking-modal::backdrop {
+      background: rgba(44, 40, 37, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .booking-modal-inner {
+      display: flex;
+      flex-direction: column;
+      max-height: 88vh;
+    }
+
+    .booking-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 28px 32px 20px 32px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-main);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .modal-price-tag {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 4px;
+      margin-bottom: 0;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--text-main);
+      color: #FFFFFF;
+      border-color: var(--text-main);
+    }
+
+    .booking-modal-body {
+      padding: 28px 32px 36px 32px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-intro {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .schedule-locations-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .schedule-location-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: var(--transition);
+    }
+
+    .schedule-location-card:hover {
+      border-color: var(--accent);
+    }
+
+    .location-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .location-name {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .location-setting {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .location-date-badge {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .time-slots-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .time-slot-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .time-slot-btn:hover {
+      border-color: var(--accent);
+      background: var(--bg-main);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .time-slot-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(140, 122, 107, 0.35);
+    }
+
+    .mini-booking-form-wrap {
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      margin-top: 8px;
+    }
+
+    .selected-slot-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(140, 122, 107, 0.08);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+
+    .selected-slot-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .selected-slot-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .selected-slot-details {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin-top: 2px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row-2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .booking-modal-header, .booking-modal-body {
+        padding: 20px;
+      }
+      .location-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .modal-subtext {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+
+    .mini-success-wrap {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .mini-success-wrap .success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(140, 122, 107, 0.15);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px auto;
+    }
+
+    /* ==========================================================================
        ABOUT PAGE
        ========================================================================== */
     .about-full {
@@ -1261,19 +1526,18 @@
               <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
             </div>
 
-            <!-- Package 2 -->
+            <!-- Package 2: The Mini Session -->
             <div class="pricing-card">
-              <h3>At-Home Lifestyle Session</h3>
-              <div class="pricing-price">$[750]</div>
-              <p>Relaxed photography in the comfort of your home, capturing honest routines.</p>
+              <h3>The Mini Session</h3>
+              <div class="pricing-price">$50/session</div>
+              <p>Short, sweet, and focused portrait sessions at hand-selected scenic locations.</p>
               <ul class="pricing-features">
-                <li>Up to 2 hours relaxed coverage</li>
-                <li>Focus on cozy, organic family dynamics</li>
-                <li>50+ high-resolution edited digital images</li>
-                <li>$50 print credit included</li>
+                <li>20 minute duration</li>
+                <li>10–15 edited high-resolution images</li>
+                <li>Client schedules a specific location chosen by Kaylee</li>
               </ul>
-              <!-- EXTERNAL BOOKING LINK PLACEHOLDER -->
-              <a href="[YOUR_BOOKING_URL_OR_HONEYBOOK_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Book a Session</a>
+              <!-- LEADS TO LIST OF LOCATIONS & TIMES CHOSEN BY KAYLEE -->
+              <button type="button" class="btn btn-primary" id="openMiniSessionBtn" onclick="openMiniSessionModal()" style="width: 100%;">Book a Session</button>
             </div>
           </div>
 
@@ -1615,6 +1879,143 @@
     </div>
   </footer>
 
+  <!-- ==========================================================================
+     MODAL: MINI SESSION LOCATION & TIME SELECTION
+     ========================================================================== -->
+  <dialog id="miniSessionModal" class="booking-modal" aria-labelledby="miniModalTitle">
+    <div class="booking-modal-inner">
+      <div class="booking-modal-header">
+        <div>
+          <span class="subtitle" style="font-size: 0.75rem; letter-spacing: 0.15em; margin-bottom: 4px; display: block;">Scheduling</span>
+          <h3 id="miniModalTitle" style="font-size: 1.8rem; margin: 0;">The Mini Session</h3>
+          <p class="modal-price-tag">$50/session &bull; 20 minute duration &bull; 10–15 edited images</p>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeMiniSessionModal()" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="booking-modal-body">
+        <p class="modal-intro">
+          Client schedules a specific location chosen by Kaylee. Please choose from the upcoming dates, locations, and time slots below:
+        </p>
+
+        <!-- KAYLEE: EDIT OR ADD MINI SESSION LOCATIONS AND TIMES BELOW -->
+        <div class="schedule-locations-list">
+          
+          <!-- Location 1 -->
+          <div class="schedule-location-card">
+            <div class="location-card-header">
+              <div>
+                <h4 class="location-name">Alpine Loop / American Fork Canyon</h4>
+                <p class="location-setting">Mountain pines, scenic meadow &amp; warm canyon golden hour</p>
+              </div>
+              <span class="location-date-badge">Saturday, Oct 24</span>
+            </div>
+            <div class="time-slots-grid">
+              <button type="button" class="time-slot-btn" data-location="Alpine Loop / American Fork Canyon" data-date="Saturday, Oct 24" data-time="4:30 PM">4:30 PM</button>
+              <button type="button" class="time-slot-btn" data-location="Alpine Loop / American Fork Canyon" data-date="Saturday, Oct 24" data-time="5:00 PM">5:00 PM</button>
+              <button type="button" class="time-slot-btn" data-location="Alpine Loop / American Fork Canyon" data-date="Saturday, Oct 24" data-time="5:30 PM">5:30 PM</button>
+            </div>
+          </div>
+
+          <!-- Location 2 -->
+          <div class="schedule-location-card">
+            <div class="location-card-header">
+              <div>
+                <h4 class="location-name">Utah Lake Shoreline (Vineyard Beach)</h4>
+                <p class="location-setting">Open water, sandy beach grasses &amp; vibrant lakeside sunset</p>
+              </div>
+              <span class="location-date-badge">Saturday, Nov 7</span>
+            </div>
+            <div class="time-slots-grid">
+              <button type="button" class="time-slot-btn" data-location="Utah Lake Shoreline (Vineyard Beach)" data-date="Saturday, Nov 7" data-time="4:15 PM">4:15 PM</button>
+              <button type="button" class="time-slot-btn" data-location="Utah Lake Shoreline (Vineyard Beach)" data-date="Saturday, Nov 7" data-time="4:45 PM">4:45 PM</button>
+              <button type="button" class="time-slot-btn" data-location="Utah Lake Shoreline (Vineyard Beach)" data-date="Saturday, Nov 7" data-time="5:15 PM">5:15 PM</button>
+            </div>
+          </div>
+
+          <!-- Location 3 -->
+          <div class="schedule-location-card">
+            <div class="location-card-header">
+              <div>
+                <h4 class="location-name">South Fork Park / Provo Canyon</h4>
+                <p class="location-setting">Rustic wooden footbridge, shaded riverbank &amp; tall pines</p>
+              </div>
+              <span class="location-date-badge">Saturday, Nov 14</span>
+            </div>
+            <div class="time-slots-grid">
+              <button type="button" class="time-slot-btn" data-location="South Fork Park / Provo Canyon" data-date="Saturday, Nov 14" data-time="3:30 PM">3:30 PM</button>
+              <button type="button" class="time-slot-btn" data-location="South Fork Park / Provo Canyon" data-date="Saturday, Nov 14" data-time="4:00 PM">4:00 PM</button>
+              <button type="button" class="time-slot-btn" data-location="South Fork Park / Provo Canyon" data-date="Saturday, Nov 14" data-time="4:30 PM">4:30 PM</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Booking Form Container (revealed upon selecting a time slot) -->
+        <div id="miniBookingFormContainer" class="mini-booking-form-wrap" style="display: none;">
+          <div class="selected-slot-banner">
+            <div class="selected-slot-icon">&#10003;</div>
+            <div>
+              <div class="selected-slot-label">Selected Time &amp; Location</div>
+              <strong id="selectedSlotText" class="selected-slot-details">Alpine Loop &bull; Saturday, Oct 24 at 5:00 PM</strong>
+            </div>
+          </div>
+
+          <form id="miniSessionBookingForm" action="https://formspree.io/f/[YOUR_FORMSPREE_ID]" method="POST">
+            <input type="hidden" id="miniHiddenSession" name="session_type" value="The Mini Session ($50/session)">
+            <input type="hidden" id="miniHiddenLocation" name="selected_location" value="">
+            <input type="hidden" id="miniHiddenDate" name="selected_date" value="">
+            <input type="hidden" id="miniHiddenTime" name="selected_time" value="">
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="miniName">Your Name *</label>
+                <input type="text" id="miniName" name="name" class="form-control" required placeholder="Jane Doe">
+              </div>
+              <div class="form-group">
+                <label for="miniEmail">Email Address *</label>
+                <input type="email" id="miniEmail" name="_replyto" class="form-control" required placeholder="jane@example.com">
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="miniPhone">Phone Number *</label>
+                <input type="tel" id="miniPhone" name="phone" class="form-control" required placeholder="(801) 555-0123">
+              </div>
+              <div class="form-group">
+                <label for="miniFamilySize">Family Members / Ages</label>
+                <input type="text" id="miniFamilySize" name="family_details" class="form-control" placeholder="e.g. 2 adults, 2 kids (ages 4 &amp; 2)">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="miniNotes">Special Notes or Questions (Optional)</label>
+              <textarea id="miniNotes" name="notes" class="form-control" rows="2" placeholder="Any details you'd like Kaylee to know..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px 28px;">
+              Request This Mini Session ($50)
+            </button>
+            <p class="modal-subtext">No immediate payment required. Kaylee will contact you within 24–48 hours to confirm your spot and share meeting details.</p>
+          </form>
+        </div>
+
+        <!-- Success Message -->
+        <div id="miniSuccessMessage" class="mini-success-wrap" style="display: none;">
+          <div class="success-icon">&check;</div>
+          <h4 style="font-size: 1.6rem; margin-bottom: 8px;">Booking Request Received!</h4>
+          <p id="miniSuccessDetails" style="color: var(--text-main); font-weight: 500; margin-bottom: 12px;"></p>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">
+            Thank you for booking a mini session with Kaylee! You will receive an email shortly with confirmation, exact pin drop location, and outfit coordination guidance.
+          </p>
+          <button type="button" class="btn btn-outline" onclick="closeMiniSessionModal()" style="margin: 0 auto; display: inline-block;">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </dialog>
+
   <!-- JavaScript for Interactive Controls & Section Navigation -->
   <script>
     // Auto Update Copyright Year
@@ -1650,6 +2051,10 @@
       } else if (targetPage === 'photography-booking' || targetPage === 'booking' || targetPage === 'book-now' || targetPage === 'book') {
         targetPage = 'photography';
         scrollTargetId = 'photography-booking';
+      } else if (targetPage === 'mini-sessions' || targetPage === 'mini-session' || targetPage === 'schedule-mini-session') {
+        targetPage = 'photography';
+        scrollTargetId = 'photography-pricing';
+        setTimeout(() => openMiniSessionModal(), 350);
       }
 
       // Handle art sub-sections
@@ -1859,6 +2264,141 @@
         }
       }
     });
+
+    // ==========================================================================
+    // MINI SESSION SCHEDULING LOGIC & TIME SLOT SELECTION
+    // ==========================================================================
+    const miniModal = document.getElementById('miniSessionModal');
+    let selectedSlotData = null;
+
+    function openMiniSessionModal() {
+      if (!miniModal) return;
+
+      // Reset success state if previously completed so client can schedule again
+      const successWrap = document.getElementById('miniSuccessMessage');
+      const formWrap = document.getElementById('miniBookingFormContainer');
+      const locList = document.querySelector('.schedule-locations-list');
+      const introText = document.querySelector('.modal-intro');
+
+      if (successWrap && successWrap.style.display === 'block') {
+        successWrap.style.display = 'none';
+        if (locList) locList.style.display = 'flex';
+        if (introText) introText.style.display = 'block';
+        if (formWrap) formWrap.style.display = 'none';
+        document.querySelectorAll('.time-slot-btn').forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-pressed', 'false');
+        });
+      }
+
+      if (typeof miniModal.showModal === 'function') {
+        miniModal.showModal();
+      } else {
+        miniModal.setAttribute('open', '');
+      }
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMiniSessionModal() {
+      if (!miniModal) return;
+      if (typeof miniModal.close === 'function') {
+        miniModal.close();
+      } else {
+        miniModal.removeAttribute('open');
+      }
+      document.body.style.overflow = '';
+    }
+
+    if (miniModal) {
+      // Close when clicking dialog backdrop
+      miniModal.addEventListener('click', (e) => {
+        const dialogDimensions = miniModal.getBoundingClientRect();
+        if (
+          e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom
+        ) {
+          closeMiniSessionModal();
+        }
+      });
+
+      miniModal.addEventListener('close', () => {
+        document.body.style.overflow = '';
+      });
+    }
+
+    function selectTimeSlot(button) {
+      document.querySelectorAll('.time-slot-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+
+      const location = button.getAttribute('data-location') || '';
+      const date = button.getAttribute('data-date') || '';
+      const time = button.getAttribute('data-time') || '';
+
+      selectedSlotData = { location, date, time };
+
+      const detailsEl = document.getElementById('selectedSlotText');
+      if (detailsEl) {
+        detailsEl.textContent = `${location} • ${date} at ${time}`;
+      }
+
+      const locInput = document.getElementById('miniHiddenLocation');
+      const dateInput = document.getElementById('miniHiddenDate');
+      const timeInput = document.getElementById('miniHiddenTime');
+
+      if (locInput) locInput.value = location;
+      if (dateInput) dateInput.value = date;
+      if (timeInput) timeInput.value = time;
+
+      const formWrap = document.getElementById('miniBookingFormContainer');
+      if (formWrap) {
+        formWrap.style.display = 'block';
+        formWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    // Attach click listener to each time slot button
+    document.querySelectorAll('.time-slot-btn').forEach(btn => {
+      btn.addEventListener('click', () => selectTimeSlot(btn));
+    });
+
+    // Handle Mini Session form submission
+    const miniForm = document.getElementById('miniSessionBookingForm');
+    if (miniForm) {
+      miniForm.addEventListener('submit', function (e) {
+        const action = miniForm.getAttribute('action');
+        // If placeholder endpoint, handle seamlessly on client side
+        if (action && action.includes('[YOUR_FORMSPREE_ID]')) {
+          e.preventDefault();
+          const nameInput = document.getElementById('miniName');
+          const clientName = nameInput ? nameInput.value : 'Friend';
+          const locDetails = selectedSlotData 
+            ? `${selectedSlotData.location} (${selectedSlotData.date} at ${selectedSlotData.time})`
+            : 'your chosen location and time';
+
+          const successDetails = document.getElementById('miniSuccessDetails');
+          if (successDetails) {
+            successDetails.textContent = `${clientName}, your request for ${locDetails} has been received!`;
+          }
+
+          const formWrap = document.getElementById('miniBookingFormContainer');
+          const locList = document.querySelector('.schedule-locations-list');
+          const introText = document.querySelector('.modal-intro');
+          const successWrap = document.getElementById('miniSuccessMessage');
+
+          if (formWrap) formWrap.style.display = 'none';
+          if (locList) locList.style.display = 'none';
+          if (introText) introText.style.display = 'none';
+          if (successWrap) successWrap.style.display = 'block';
+        }
+      });
+    }
 
     // Initialize state on load
     const initialHash = window.location.hash.replace('#', '').toLowerCase();
