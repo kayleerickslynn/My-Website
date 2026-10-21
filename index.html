@@ -513,49 +513,35 @@
     .hero-split-content {
       pointer-events: auto;
       text-align: center;
-      max-width: 720px;
+      max-width: 480px;
       width: 100%;
-      padding: 34px 28px;
-      border-radius: var(--radius);
-      background: radial-gradient(ellipse at center, rgba(253, 251, 247, 0.90) 0%, rgba(253, 251, 247, 0.72) 60%, rgba(253, 251, 247, 0.25) 100%);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-    }
-
-    .hero-split-eyebrow {
-      display: block;
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.32em;
-      color: var(--text-main);
-      font-weight: 500;
-      margin-bottom: 14px;
+      padding: 24px 20px;
+      background: radial-gradient(ellipse at center, rgba(253, 251, 247, 0.88) 0%, rgba(253, 251, 247, 0.62) 42%, rgba(253, 251, 247, 0.20) 68%, rgba(253, 251, 247, 0) 86%);
     }
 
     .hero-split-title {
       font-family: var(--font-serif);
-      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.35;
       color: var(--text-main);
-      margin: 0 0 16px 0;
-      text-transform: lowercase;
-      letter-spacing: -0.01em;
+      margin: 0 0 14px 0;
+      text-transform: none;
+      letter-spacing: 0.02em;
     }
 
     .hero-split-divider {
-      width: 56px;
+      width: 36px;
       height: 1px;
-      background-color: rgba(44, 40, 37, 0.4);
-      margin: 0 auto 24px auto;
+      background-color: rgba(44, 40, 37, 0.25);
+      margin: 0 auto 16px auto;
     }
 
     .hero-split-btn-group {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
@@ -563,11 +549,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 13px 30px;
+      padding: 9px 20px;
       font-family: var(--font-sans);
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       font-weight: 500;
       border-radius: var(--radius);
       text-decoration: none;
@@ -577,33 +563,33 @@
     }
 
     .hero-split-btn-light {
-      background: rgba(253, 251, 247, 0.96);
+      background: rgba(253, 251, 247, 0.95);
       color: var(--text-main);
-      border: 1px solid rgba(44, 40, 37, 0.18);
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(44, 40, 37, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
     .hero-split-btn-light:hover {
       background: var(--text-main);
       color: #FFFFFF;
       border-color: var(--text-main);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     .hero-split-btn-green {
       background: #738174;
       color: #FFFFFF;
       border: 1px solid #738174;
-      box-shadow: 0 3px 12px rgba(55, 68, 57, 0.18);
+      box-shadow: 0 2px 8px rgba(55, 68, 57, 0.14);
     }
 
     .hero-split-btn-green:hover {
       background: #5c685d;
       border-color: #5c685d;
       color: #FFFFFF;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(55, 68, 57, 0.25);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(55, 68, 57, 0.2);
     }
 
     /* Slider Navigation Arrows */
@@ -1476,33 +1462,29 @@
       }
 
       .hero-split-content {
-        padding: 24px 16px;
-        max-width: 90%;
-      }
-
-      .hero-split-eyebrow {
-        font-size: 0.75rem;
-        letter-spacing: 0.24em;
-        margin-bottom: 10px;
+        padding: 20px 14px;
+        max-width: 92%;
+        background: radial-gradient(ellipse at center, rgba(253, 251, 247, 0.92) 0%, rgba(253, 251, 247, 0.70) 50%, rgba(253, 251, 247, 0.20) 75%, rgba(253, 251, 247, 0) 90%);
       }
 
       .hero-split-title {
-        font-size: clamp(1.4rem, 5.2vw, 1.9rem);
-        line-height: 1.25;
+        font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+        line-height: 1.35;
       }
 
       .hero-split-divider {
-        margin: 0 auto 18px auto;
+        margin: 0 auto 14px auto;
+        width: 30px;
       }
 
       .hero-split-btn-group {
-        gap: 10px;
+        gap: 8px;
       }
 
       .hero-split-btn {
-        padding: 11px 20px;
-        font-size: 0.72rem;
-        letter-spacing: 0.12em;
+        padding: 8px 15px;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
       }
 
       .slider-arrow {
@@ -1629,8 +1611,7 @@
                 <!-- Slide 1 Center Overlay: Caption and Shopping Action Buttons -->
                 <div class="hero-split-overlay">
                   <div class="hero-split-content">
-                    <span class="hero-split-eyebrow">Capturing</span>
-                    <h1 class="hero-split-title">gentle, organic family photos<br>and creating fine-art prints</h1>
+                    <h1 class="hero-split-title">Capturing gentle, organic family photos<br>and creating fine-art prints</h1>
                     <div class="hero-split-divider" aria-hidden="true"></div>
                     <div class="hero-split-btn-group">
                       <a href="#photography" class="hero-split-btn hero-split-btn-light">Book a Photoshoot</a>
