@@ -384,6 +384,16 @@
       height: 100%;
       overflow: hidden;
       background-color: var(--bg-alt);
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .hero-slider img {
+      -webkit-user-drag: none;
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
     }
 
     .hero-slides-track {
@@ -592,43 +602,36 @@
       box-shadow: 0 4px 12px rgba(55, 68, 57, 0.2);
     }
 
-    /* Slider Navigation Arrows */
-    .slider-arrow {
+    /* Invisible Side Navigation Tap Zones (Click either side of slide to navigate) */
+    .slider-nav-side {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(253, 251, 247, 0.75);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(230, 224, 214, 0.75);
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      z-index: 6;
       cursor: pointer;
-      z-index: 15;
-      transition: var(--transition);
-      opacity: 0.85;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    .slider-arrow:hover {
-      opacity: 1;
-      background: #FFFFFF;
-      color: var(--text-main);
-      transform: translateY(-50%) scale(1.08);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    .slider-nav-prev {
+      left: 0;
     }
 
-    .slider-prev {
-      left: 20px;
+    .slider-nav-next {
+      right: 0;
     }
 
-    .slider-next {
-      right: 20px;
+    .slider-nav-side:focus-visible {
+      outline: 2px solid rgba(115, 129, 116, 0.7);
+      outline-offset: -4px;
     }
 
     /* Slider Indicators (Dots) */
@@ -1492,18 +1495,6 @@
         letter-spacing: 0.1em;
       }
 
-      .slider-arrow {
-        width: 36px;
-        height: 36px;
-      }
-
-      .slider-prev {
-        left: 10px;
-      }
-
-      .slider-next {
-        right: 10px;
-      }
 
       .btn-group {
         flex-direction: column;
@@ -1604,7 +1595,7 @@
 
                 <!-- Right: Painting Spot -->
                 <div class="split-side split-painting">
-                  <img src="images/hero-slide-painting.jpg?v=2" alt="Fine-art watercolor painting of family with Christ" class="hero-split-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                  <img src="images/hero-slide-painting.jpg?v=3" alt="Fine-art watercolor painting of family with Christ" class="hero-split-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                   <div class="img-placeholder hero-slide-placeholder split-placeholder" style="display: none;">
                     <div class="placeholder-content">
                       <span class="placeholder-icon">🎨</span>
@@ -1653,17 +1644,9 @@
 
             </div>
 
-            <!-- Navigation Arrows (Previous / Next) -->
-            <button class="slider-arrow slider-prev" id="sliderPrevBtn" aria-label="Previous slide" onclick="prevSlide(true)" type="button">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button class="slider-arrow slider-next" id="sliderNextBtn" aria-label="Next slide" onclick="nextSlide(true)" type="button">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
+            <!-- Invisible Click Zones on Either Side of Carousel (Left = Previous, Right = Next) -->
+            <button class="slider-nav-side slider-nav-prev" id="sliderPrevBtn" aria-label="Previous slide" title="Previous slide" type="button"></button>
+            <button class="slider-nav-side slider-nav-next" id="sliderNextBtn" aria-label="Next slide" title="Next slide" type="button"></button>
 
             <!-- Slide Indicators (Dots) -->
             <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Slide Selection">
@@ -2039,188 +2022,7 @@
           </div>
 
           <!-- ==========================================================================
-             SECTION 1: CHRISTIAN PRINTS
-             ========================================================================== -->
-          <div id="art-christian" class="art-category-section" style="scroll-margin-top: 110px;">
-            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
-              <span class="subtitle">Faith &amp; Devotion</span>
-              <h2>Christian Prints</h2>
-              <p>Reverent, peaceful artwork honoring Christ and sacred spiritual moments. Designed to bring stillness, comfort, and devotion to your home.</p>
-            </div>
-
-            <div class="grid-3">
-              <!-- Christian Print 1 -->
-              <div class="artwork-item card">
-                <a href="https://www.etsy.com/listing/4469815344/watercolor-faceless-painting-print" target="_blank" rel="noopener" class="card-image">
-                  <img src="images/woman-at-the-well-faceless.jpg" alt="Woman at the Well, Faceless - Hand-painted watercolor print" loading="lazy">
-                </a>
-                <div class="artwork-details">
-                  <h3 class="card-title">
-                    <a href="https://www.etsy.com/listing/4469815344/watercolor-faceless-painting-print" target="_blank" rel="noopener">Woman at the Well, Faceless</a>
-                  </h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Reverent faceless watercolor illustration capturing the sacred encounter at the well.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="https://www.etsy.com/listing/4469815344/watercolor-faceless-painting-print" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
-                </div>
-              </div>
-
-              <!-- Christian Print 2 -->
-              <div class="artwork-item card">
-                <div class="card-image">
-                  <img src="images/the-shepherd.jpg" alt="The Shepherd's Watch - Hand-painted watercolor print" loading="lazy">
-                </div>
-                <div class="artwork-details">
-                  <h3 class="card-title">The Shepherd's Watch</h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Gentle watercolor capturing watchful love, guidance, and enduring protection.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-                </div>
-              </div>
-
-              <!-- Christian Print 3 -->
-              <div class="artwork-item card">
-                <div class="card-image">
-                  <img src="images/savior-and-friend.jpg" alt="Savior and Friend - Hand-painted watercolor print" loading="lazy">
-                </div>
-                <div class="artwork-details">
-                  <h3 class="card-title">Savior and Friend</h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Tender watercolor depicting Christ offering comfort, peace, and refuge in an embrace of grace.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <hr class="art-category-divider">
-
-          <!-- ==========================================================================
-             SECTION 2: FAMILY / CHILDREN PRINTS
-             ========================================================================== -->
-          <div id="art-family" class="art-category-section" style="scroll-margin-top: 110px;">
-            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
-              <span class="subtitle">Childhood &amp; Kinship</span>
-              <h2>Family/Children Prints</h2>
-              <p>Honest, tender art celebrating the innocence of childhood, motherly affection, and the sweet everyday rhythms of home life.</p>
-            </div>
-
-            <div class="grid-3">
-              <!-- Family Print 1 -->
-              <div class="artwork-item card">
-                <div class="card-image">
-                  <img src="images/little-arms-whole-world.jpg" alt="Little Arms, Whole World - Hand-painted watercolor print" loading="lazy">
-                </div>
-                <div class="artwork-details">
-                  <h3 class="card-title">Little Arms, Whole World</h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Quiet, tender watercolor tones capturing sweet moments of maternal embrace.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-                </div>
-              </div>
-
-              <!-- Family Print 2 -->
-              <div class="artwork-item card">
-                <div class="card-image">
-                  <img src="images/rest.jpg" alt="Rest - Hand-painted watercolor print" loading="lazy">
-                </div>
-                <div class="artwork-details">
-                  <h3 class="card-title">Rest</h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Gentle watercolor capturing peaceful comfort, warmth, and quiet rest in loving arms.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-                </div>
-              </div>
-
-              <!-- Family Print 3 -->
-              <div class="artwork-item card">
-                <div class="card-image img-placeholder">[PLACEHOLDER: Family Print 3 - Sibling Stories]</div>
-                <div class="artwork-details">
-                  <h3 class="card-title">Sibling Stories</h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm neutral palette celebrating quiet sisterly and brotherly bonds.</p>
-                  <div class="card-price">From $[120.00]</div>
-                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <hr class="art-category-divider">
-
-          <!-- ==========================================================================
-             SECTION 3: NATURE PRINTS
-             ========================================================================== -->
-          <div id="art-nature" class="art-category-section" style="scroll-margin-top: 110px;">
-            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
-              <span class="subtitle">Landscapes &amp; Botanicals</span>
-              <h2>Nature Prints</h2>
-              <p>Quiet landscapes, organic botanical studies, and open horizons rendered in soft, calming color palettes to ground your home.</p>
-            </div>
-
-            <div class="grid-3">
-              <!-- Nature Print 1 -->
-              <div class="artwork-item card">
-                <a href="https://www.etsy.com/listing/4469803694/hand-painted-whale-watercolor-print" target="_blank" rel="noopener" class="card-image">
-                  <img src="images/blue-whale.jpg" alt="Blue Whale - Hand-painted watercolor print" loading="lazy">
-                </a>
-                <div class="artwork-details">
-                  <h3 class="card-title">
-                    <a href="https://www.etsy.com/listing/4469803694/hand-painted-whale-watercolor-print" target="_blank" rel="noopener">Blue Whale</a>
-                  </h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Hand-painted watercolor print featuring a gentle blue whale in serene ocean tones.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="https://www.etsy.com/listing/4469803694/hand-painted-whale-watercolor-print" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
-                </div>
-              </div>
-
-              <!-- Nature Print 2 -->
-              <div class="artwork-item card">
-                <a href="https://www.etsy.com/listing/4469243486/flower-bouquet-poster-hand-painted" target="_blank" rel="noopener" class="card-image">
-                  <img src="images/wildflower-bouquet.jpg" alt="Wildflower Bouquet - Hand-painted watercolor print" loading="lazy">
-                </a>
-                <div class="artwork-details">
-                  <h3 class="card-title">
-                    <a href="https://www.etsy.com/listing/4469243486/flower-bouquet-poster-hand-painted" target="_blank" rel="noopener">Wildflower Bouquet</a>
-                  </h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Vibrant, hand-painted watercolor botanical bouquet bursting with colorful wildflowers.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="https://www.etsy.com/listing/4469243486/flower-bouquet-poster-hand-painted" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
-                </div>
-              </div>
-
-              <!-- Nature Print 3 -->
-              <div class="artwork-item card">
-                <a href="https://www.etsy.com/listing/4469230508/hand-painted-watercolor-original-robin" target="_blank" rel="noopener" class="card-image">
-                  <img src="images/robin-in-a-tree.jpg" alt="Robin in a Tree - Hand-painted watercolor original" loading="lazy">
-                </a>
-                <div class="artwork-details">
-                  <h3 class="card-title">
-                    <a href="https://www.etsy.com/listing/4469230508/hand-painted-watercolor-original-robin" target="_blank" rel="noopener">Robin in a Tree</a>
-                  </h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Hand-painted watercolor original capturing a charming robin perched among green and blue foliage.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="https://www.etsy.com/listing/4469230508/hand-painted-watercolor-original-robin" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
-                </div>
-              </div>
-
-              <!-- Nature Print 4 -->
-              <div class="artwork-item card">
-                <div class="card-image">
-                  <img src="images/summer-tree.jpg" alt="Summer Tree - Hand-painted watercolor print" loading="lazy">
-                </div>
-                <div class="artwork-details">
-                  <h3 class="card-title">Summer Tree</h3>
-                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Lush green summer tree standing in an open grassy meadow under a bright, peaceful sky.</p>
-                  <div class="card-price">Hand-Painted Watercolor</div>
-                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <hr class="art-category-divider">
-
-          <!-- ==========================================================================
-             SECTION 4: CUSTOM FAMILY ART
+             SECTION 1: CUSTOM FAMILY ART
              ========================================================================== -->
           <div id="art-custom" class="art-category-section" style="scroll-margin-top: 110px;">
             <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
@@ -2296,151 +2098,326 @@
               </div>
               <a href="#contact" class="btn btn-primary" style="margin-top: 8px;">Start Your Custom Commission</a>
             </div>
-
-            <div class="text-center" style="margin-top: 48px;">
-              <a href="#art-faq" class="btn">View All Art FAQ's</a>
-            </div>
           </div>
-        </div>
-      </section>
-    </div>
 
-    <!-- ==========================================================================
-       PAGE: ART FAQ VIEW
-       ========================================================================== -->
-    <div id="view-art-faq" class="page-view">
-      <section id="art-faq" class="section">
-        <div class="container faq-page-container">
-          <div class="text-center" style="max-width: 650px; margin: 0 auto 40px auto;">
-            <span class="subtitle">Art &amp; Print Details</span>
-            <h2>Art FAQ's</h2>
-            <p>Everything you need to know about paper quality, print sizing, custom commissions, framing recommendations, and shipping.</p>
-          </div>
+          <hr class="art-category-divider">
 
           <!-- ==========================================================================
-             KAYLEE: EDIT, REMOVE, OR ADD YOUR QUESTIONS & ANSWERS BELOW
-             To add another question, copy one of the "faq-card" blocks and paste it in.
+             SECTION 2: FAMILY / CHILDREN PRINTS
              ========================================================================== -->
-          <div class="faq-list">
-            
-            <!-- Question 1 -->
-            <div class="faq-accordion-item">
-              <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
-                <span>What paper and materials are used for fine art prints?</span>
-                <span class="faq-arrow-btn" aria-label="Toggle answer">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-accordion-body">
-                <p>All art reproductions are printed on archival 100% cotton rag fine-art paper using museum-grade pigment inks. This heavy, textured paper offers rich color depth, beautiful tactile finish, and is acid-free to resist fading over decades.</p>
-              </div>
+          <div id="art-family" class="art-category-section" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Childhood &amp; Kinship</span>
+              <h2>Family/Children Prints</h2>
+              <p>Honest, tender art celebrating the innocence of childhood, motherly affection, and the sweet everyday rhythms of home life.</p>
             </div>
 
-            <!-- Question 2 -->
-            <div class="faq-accordion-item">
-              <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
-                <span>Do prints come framed or unframed?</span>
-                <span class="faq-arrow-btn" aria-label="Toggle answer">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-accordion-body">
-                <p>Prints are currently shipped unframed so you can choose a frame and matting that best complements your home decor. Standard print sizes (such as 5x7, 8x10, 11x14, and 16x20) fit easily into ready-made frames from popular retailers.</p>
+            <div class="grid-3">
+              <!-- Family Print 1 -->
+              <div class="artwork-item card">
+                <div class="card-image">
+                  <img src="images/little-arms-whole-world.jpg" alt="Little Arms, Whole World - Hand-painted watercolor print" loading="lazy">
+                </div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Little Arms, Whole World</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Quiet, tender watercolor tones capturing sweet moments of maternal embrace.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Family Print 2 -->
+              <div class="artwork-item card">
+                <div class="card-image">
+                  <img src="images/rest.jpg" alt="Rest - Hand-painted watercolor print" loading="lazy">
+                </div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Rest</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Gentle watercolor capturing peaceful comfort, warmth, and quiet rest in loving arms.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Family Print 3 -->
+              <div class="artwork-item card">
+                <div class="card-image img-placeholder">[PLACEHOLDER: Family Print 3 - Sibling Stories]</div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Sibling Stories</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Warm neutral palette celebrating quiet sisterly and brotherly bonds.</p>
+                  <div class="card-price">From $[120.00]</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- Question 3 -->
-            <div class="faq-accordion-item">
-              <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
-                <span>How does the custom family art commission process work?</span>
-                <span class="faq-arrow-btn" aria-label="Toggle answer">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-accordion-body">
-                <p>Custom commissions begin by submitting an inquiry with your concept, preferred dimensions, and reference photos. Once details are confirmed, Kaylee begins hand-crafting your original artwork with progress updates along the way. Finished originals are carefully packaged with care instructions and framing tips.</p>
-              </div>
+          <hr class="art-category-divider">
+
+          <!-- ==========================================================================
+             SECTION 3: CHRISTIAN PRINTS
+             ========================================================================== -->
+          <div id="art-christian" class="art-category-section" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Faith &amp; Devotion</span>
+              <h2>Christian Prints</h2>
+              <p>Reverent, peaceful artwork honoring Christ and sacred spiritual moments. Designed to bring stillness, comfort, and devotion to your home.</p>
             </div>
 
-            <!-- Question 4 -->
-            <div class="faq-accordion-item">
-              <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
-                <span>How long does it take for art orders and commissions to arrive?</span>
-                <span class="faq-arrow-btn" aria-label="Toggle answer">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-accordion-body">
-                <p>Standard fine-art prints are printed, packaged, and shipped within 3 to 7 business days. Custom original commissions typically require 3 to 5 weeks from booking to completion depending on the studio queue and medium complexity.</p>
+            <div class="grid-3">
+              <!-- Christian Print 1 -->
+              <div class="artwork-item card">
+                <a href="https://www.etsy.com/listing/4469815344/watercolor-faceless-painting-print" target="_blank" rel="noopener" class="card-image">
+                  <img src="images/woman-at-the-well-faceless.jpg" alt="Woman at the Well, Faceless - Hand-painted watercolor print" loading="lazy">
+                </a>
+                <div class="artwork-details">
+                  <h3 class="card-title">
+                    <a href="https://www.etsy.com/listing/4469815344/watercolor-faceless-painting-print" target="_blank" rel="noopener">Woman at the Well, Faceless</a>
+                  </h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Reverent faceless watercolor illustration capturing the sacred encounter at the well.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="https://www.etsy.com/listing/4469815344/watercolor-faceless-painting-print" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
+                </div>
+              </div>
+
+              <!-- Christian Print 2 -->
+              <div class="artwork-item card">
+                <div class="card-image">
+                  <img src="images/the-shepherd.jpg" alt="The Shepherd's Watch - Hand-painted watercolor print" loading="lazy">
+                </div>
+                <div class="artwork-details">
+                  <h3 class="card-title">The Shepherd's Watch</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Gentle watercolor capturing watchful love, guidance, and enduring protection.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
+              </div>
+
+              <!-- Christian Print 3 -->
+              <div class="artwork-item card">
+                <div class="card-image">
+                  <img src="images/savior-and-friend.jpg" alt="Savior and Friend - Hand-painted watercolor print" loading="lazy">
+                </div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Savior and Friend</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Tender watercolor depicting Christ offering comfort, peace, and refuge in an embrace of grace.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- Question 5 -->
-            <div class="faq-accordion-item">
-              <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
-                <span>How are prints packaged for shipping?</span>
-                <span class="faq-arrow-btn" aria-label="Toggle answer">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-accordion-body">
-                <p>Smaller prints (up to 11x14) are packaged flat with rigid backing boards and protected in archival clear sleeves. Larger prints are carefully wrapped in acid-free tissue paper and shipped in heavy-duty mailing tubes to prevent creasing or edge damage.</p>
-              </div>
+          <hr class="art-category-divider">
+
+          <!-- ==========================================================================
+             SECTION 4: NATURE / FLORAL PRINTS
+             ========================================================================== -->
+          <div id="art-nature" class="art-category-section" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Landscapes &amp; Botanicals</span>
+              <h2>Nature/Floral Prints</h2>
+              <p>Quiet landscapes, organic botanical studies, and open horizons rendered in soft, calming color palettes to ground your home.</p>
             </div>
 
-            <!-- Question 6 -->
-            <div class="faq-accordion-item">
-              <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
-                <span>Can I request custom print sizes?</span>
-                <span class="faq-arrow-btn" aria-label="Toggle answer">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-accordion-body">
-                <p>Yes! If you have a specific frame or wall dimension that requires custom sizing, please reach out through the contact form or email before placing your order, and we can accommodate custom dimensions whenever possible.</p>
+            <div class="grid-3">
+              <!-- Nature Print 1 -->
+              <div class="artwork-item card">
+                <a href="https://www.etsy.com/listing/4469803694/hand-painted-whale-watercolor-print" target="_blank" rel="noopener" class="card-image">
+                  <img src="images/blue-whale.jpg" alt="Blue Whale - Hand-painted watercolor print" loading="lazy">
+                </a>
+                <div class="artwork-details">
+                  <h3 class="card-title">
+                    <a href="https://www.etsy.com/listing/4469803694/hand-painted-whale-watercolor-print" target="_blank" rel="noopener">Blue Whale</a>
+                  </h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Hand-painted watercolor print featuring a gentle blue whale in serene ocean tones.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="https://www.etsy.com/listing/4469803694/hand-painted-whale-watercolor-print" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
+                </div>
+              </div>
+
+              <!-- Nature Print 2 -->
+              <div class="artwork-item card">
+                <a href="https://www.etsy.com/listing/4469243486/flower-bouquet-poster-hand-painted" target="_blank" rel="noopener" class="card-image">
+                  <img src="images/wildflower-bouquet.jpg" alt="Wildflower Bouquet - Hand-painted watercolor print" loading="lazy">
+                </a>
+                <div class="artwork-details">
+                  <h3 class="card-title">
+                    <a href="https://www.etsy.com/listing/4469243486/flower-bouquet-poster-hand-painted" target="_blank" rel="noopener">Wildflower Bouquet</a>
+                  </h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Vibrant, hand-painted watercolor botanical bouquet bursting with colorful wildflowers.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="https://www.etsy.com/listing/4469243486/flower-bouquet-poster-hand-painted" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
+                </div>
+              </div>
+
+              <!-- Nature Print 3 -->
+              <div class="artwork-item card">
+                <a href="https://www.etsy.com/listing/4469230508/hand-painted-watercolor-original-robin" target="_blank" rel="noopener" class="card-image">
+                  <img src="images/robin-in-a-tree.jpg" alt="Robin in a Tree - Hand-painted watercolor original" loading="lazy">
+                </a>
+                <div class="artwork-details">
+                  <h3 class="card-title">
+                    <a href="https://www.etsy.com/listing/4469230508/hand-painted-watercolor-original-robin" target="_blank" rel="noopener">Robin in a Tree</a>
+                  </h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Hand-painted watercolor original capturing a charming robin perched among green and blue foliage.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="https://www.etsy.com/listing/4469230508/hand-painted-watercolor-original-robin" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy on Etsy</a>
+                </div>
+              </div>
+
+              <!-- Nature Print 4 -->
+              <div class="artwork-item card">
+                <div class="card-image">
+                  <img src="images/summer-tree.jpg" alt="Summer Tree - Hand-painted watercolor print" loading="lazy">
+                </div>
+                <div class="artwork-details">
+                  <h3 class="card-title">Summer Tree</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 8px;">Lush green summer tree standing in an open grassy meadow under a bright, peaceful sky.</p>
+                  <div class="card-price">Hand-Painted Watercolor</div>
+                  <a href="[YOUR_SHOP_URL_OR_SHOPIFY_LINK]" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">Buy Print</a>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- Question 7 -->
-            <div class="faq-accordion-item">
-              <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
-                <span>What is your return or exchange policy for artwork?</span>
-                <span class="faq-arrow-btn" aria-label="Toggle answer">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-accordion-body">
-                <p>Because each fine-art print is made to order and custom commissions are uniquely personalized, all sales are final. However, if your art arrives damaged during shipping or if there is an issue with your print, please contact us within 7 days of delivery with photos and we will promptly send a replacement.</p>
+          <hr class="art-category-divider">
+
+          <!-- ==========================================================================
+             SECTION 5: FAQ
+             ========================================================================== -->
+          <div id="art-faq" class="art-category-section faq-page-container" style="scroll-margin-top: 110px;">
+            <div class="text-center" style="max-width: 650px; margin: 0 auto 40px auto;">
+              <span class="subtitle">Art &amp; Print Details</span>
+              <h2>Art FAQ</h2>
+              <p>Everything you need to know about paper quality, print sizing, custom commissions, framing recommendations, and shipping.</p>
+            </div>
+
+            <!-- ==========================================================================
+               KAYLEE: EDIT, REMOVE, OR ADD YOUR QUESTIONS & ANSWERS BELOW
+               To add another question, copy one of the "faq-card" blocks and paste it in.
+               ========================================================================== -->
+            <div class="faq-list">
+              
+              <!-- Question 1 -->
+              <div class="faq-accordion-item">
+                <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+                  <span>What paper and materials are used for fine art prints?</span>
+                  <span class="faq-arrow-btn" aria-label="Toggle answer">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-accordion-body">
+                  <p>All art reproductions are printed on archival 100% cotton rag fine-art paper using museum-grade pigment inks. This heavy, textured paper offers rich color depth, beautiful tactile finish, and is acid-free to resist fading over decades.</p>
+                </div>
+              </div>
+
+              <!-- Question 2 -->
+              <div class="faq-accordion-item">
+                <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+                  <span>Do prints come framed or unframed?</span>
+                  <span class="faq-arrow-btn" aria-label="Toggle answer">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-accordion-body">
+                  <p>Prints are currently shipped unframed so you can choose a frame and matting that best complements your home decor. Standard print sizes (such as 5x7, 8x10, 11x14, and 16x20) fit easily into ready-made frames from popular retailers.</p>
+                </div>
+              </div>
+
+              <!-- Question 3 -->
+              <div class="faq-accordion-item">
+                <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+                  <span>How does the custom family art commission process work?</span>
+                  <span class="faq-arrow-btn" aria-label="Toggle answer">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-accordion-body">
+                  <p>Custom commissions begin by submitting an inquiry with your concept, preferred dimensions, and reference photos. Once details are confirmed, Kaylee begins hand-crafting your original artwork with progress updates along the way. Finished originals are carefully packaged with care instructions and framing tips.</p>
+                </div>
+              </div>
+
+              <!-- Question 4 -->
+              <div class="faq-accordion-item">
+                <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+                  <span>How long does it take for art orders and commissions to arrive?</span>
+                  <span class="faq-arrow-btn" aria-label="Toggle answer">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-accordion-body">
+                  <p>Standard fine-art prints are printed, packaged, and shipped within 3 to 7 business days. Custom original commissions typically require 3 to 5 weeks from booking to completion depending on the studio queue and medium complexity.</p>
+                </div>
+              </div>
+
+              <!-- Question 5 -->
+              <div class="faq-accordion-item">
+                <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+                  <span>How are prints packaged for shipping?</span>
+                  <span class="faq-arrow-btn" aria-label="Toggle answer">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-accordion-body">
+                  <p>Smaller prints (up to 11x14) are packaged flat with rigid backing boards and protected in archival clear sleeves. Larger prints are carefully wrapped in acid-free tissue paper and shipped in heavy-duty mailing tubes to prevent creasing or edge damage.</p>
+                </div>
+              </div>
+
+              <!-- Question 6 -->
+              <div class="faq-accordion-item">
+                <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+                  <span>Can I request custom print sizes?</span>
+                  <span class="faq-arrow-btn" aria-label="Toggle answer">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-accordion-body">
+                  <p>Yes! If you have a specific frame or wall dimension that requires custom sizing, please reach out through the contact form or email before placing your order, and we can accommodate custom dimensions whenever possible.</p>
+                </div>
+              </div>
+
+              <!-- Question 7 -->
+              <div class="faq-accordion-item">
+                <button type="button" class="faq-accordion-header" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+                  <span>What is your return or exchange policy for artwork?</span>
+                  <span class="faq-arrow-btn" aria-label="Toggle answer">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-accordion-body">
+                  <p>Because each fine-art print is made to order and custom commissions are uniquely personalized, all sales are final. However, if your art arrives damaged during shipping or if there is an issue with your print, please contact us within 7 days of delivery with photos and we will promptly send a replacement.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Bottom Contact / Help Callout -->
+            <div class="faq-cta-box">
+              <span class="subtitle">Have Another Question?</span>
+              <h3 style="margin-bottom: 12px;">Let's Talk About Your Project</h3>
+              <p>Have questions about custom commissions, special sizing, or finding the right piece for your space? I'd love to assist you.</p>
+              <div class="btn-group" style="justify-content: center;">
+                <a href="#contact" class="btn btn-primary">Send a Message</a>
+                <a href="#art-all" class="btn">Explore The Gallery</a>
               </div>
             </div>
 
           </div>
-
-          <!-- Bottom Contact / Help Callout -->
-          <div class="faq-cta-box">
-            <span class="subtitle">Have Another Question?</span>
-            <h3 style="margin-bottom: 12px;">Let's Talk About Your Project</h3>
-            <p>Have questions about custom commissions, special sizing, or finding the right piece for your space? I'd love to assist you.</p>
-            <div class="btn-group" style="justify-content: center;">
-              <a href="#contact" class="btn btn-primary">Send a Message</a>
-              <a href="#art" class="btn">Explore The Gallery</a>
-            </div>
-          </div>
-
         </div>
       </section>
     </div>
@@ -2704,7 +2681,7 @@
     }
 
     // Page Routing / Section View Logic
-    const validPages = ['home', 'photography', 'art', 'about', 'contact', 'photography-faq', 'art-faq'];
+    const validPages = ['home', 'photography', 'art', 'about', 'contact', 'photography-faq'];
 
     function navigateToPage(pageName, shouldScroll = true) {
       let targetPage = pageName || 'home';
@@ -2729,20 +2706,24 @@
       }
 
       // Handle art sub-sections
-      if (targetPage === 'art-christian' || targetPage === 'christian-prints' || targetPage === 'christian') {
+      if (targetPage === 'art-all' || targetPage === 'all-prints' || targetPage === 'view-all-prints') {
         targetPage = 'art';
-        scrollTargetId = 'art-christian';
-      } else if (targetPage === 'art-family' || targetPage === 'family-children-prints' || targetPage === 'family-prints' || targetPage === 'children-prints' || targetPage === 'family') {
-        targetPage = 'art';
-        scrollTargetId = 'art-family';
-      } else if (targetPage === 'art-nature' || targetPage === 'nature-prints' || targetPage === 'nature') {
-        targetPage = 'art';
-        scrollTargetId = 'art-nature';
+        scrollTargetId = 'art-all';
       } else if (targetPage === 'art-custom' || targetPage === 'custom-family-art' || targetPage === 'custom-art' || targetPage === 'custom-family' || targetPage === 'custom') {
         targetPage = 'art';
         scrollTargetId = 'art-custom';
+      } else if (targetPage === 'art-family' || targetPage === 'family-children-prints' || targetPage === 'family-prints' || targetPage === 'children-prints' || targetPage === 'family') {
+        targetPage = 'art';
+        scrollTargetId = 'art-family';
+      } else if (targetPage === 'art-christian' || targetPage === 'christian-prints' || targetPage === 'christian') {
+        targetPage = 'art';
+        scrollTargetId = 'art-christian';
+      } else if (targetPage === 'art-nature' || targetPage === 'nature-prints' || targetPage === 'nature' || targetPage === 'nature-floral-prints' || targetPage === 'art-nature-floral' || targetPage === 'nature-floral') {
+        targetPage = 'art';
+        scrollTargetId = 'art-nature';
       } else if (targetPage === 'art-faq' || targetPage === 'art-faqs') {
-        targetPage = 'art-faq';
+        targetPage = 'art';
+        scrollTargetId = 'art-faq';
       } else if (targetPage === 'artwork') {
         targetPage = 'art';
       }
@@ -2766,11 +2747,12 @@
         const isCurrentPage = href === '#' + targetPage;
         const isSubActive = scrollTargetId && href === '#' + scrollTargetId;
         const isPhotographyParent = targetPage === 'photography-faq' && href === '#photography';
-        const isArtParent = targetPage === 'art-faq' && href === '#art';
+        const isArtParent = targetPage === 'art' && href === '#art';
+        const isViewAllActive = (targetPage === 'art' && (!scrollTargetId || scrollTargetId === 'art-all') && href === '#art-all');
 
-        if (isCurrentPage || isSubActive || isPhotographyParent || isArtParent) {
+        if (isCurrentPage || isSubActive || isPhotographyParent || isArtParent || isViewAllActive) {
           link.classList.add('active');
-          if (isSubActive || (!scrollTargetId && isCurrentPage)) {
+          if (isSubActive || isViewAllActive || (!scrollTargetId && isCurrentPage)) {
             link.setAttribute('aria-current', 'page');
           }
         } else {
@@ -2893,27 +2875,105 @@
       startSlideTimer();
     }
 
-    // Initialize touch swipe interactions for the slider
+    // Invisible side click zones and touch/mouse swipe navigation
     const heroSlider = document.getElementById('heroSlider');
-    if (heroSlider) {
-      let touchStartX = 0;
-      let touchEndX = 0;
+    const prevSideBtn = document.getElementById('sliderPrevBtn');
+    const nextSideBtn = document.getElementById('sliderNextBtn');
 
+    let didSwipe = false;
+    let swipeResetTimer = null;
+
+    function setDidSwipe() {
+      didSwipe = true;
+      if (swipeResetTimer) clearTimeout(swipeResetTimer);
+      swipeResetTimer = setTimeout(() => {
+        didSwipe = false;
+      }, 300);
+    }
+
+    if (prevSideBtn) {
+      prevSideBtn.addEventListener('click', (e) => {
+        if (didSwipe) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        prevSlide(true);
+      });
+    }
+
+    if (nextSideBtn) {
+      nextSideBtn.addEventListener('click', (e) => {
+        if (didSwipe) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        nextSlide(true);
+      });
+    }
+
+    if (heroSlider) {
+      let startX = 0;
+      let startY = 0;
+      let startTime = 0;
+      let isDragging = false;
+
+      // Touch swipe for mobile/tablet
       heroSlider.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
+        if (e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startTime = Date.now();
       }, { passive: true });
 
       heroSlider.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 40) {
-          if (diff > 0) {
-            nextSlide(true);
+        if (e.changedTouches.length === 0) return;
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const deltaX = startX - endX;
+        const deltaY = startY - endY;
+
+        // Ensure movement was primarily horizontal and exceeded distance threshold
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+          setDidSwipe();
+          if (deltaX > 0) {
+            nextSlide(true); // Swipe left -> next slide
           } else {
-            prevSlide(true);
+            prevSlide(true); // Swipe right -> prev slide
           }
         }
       }, { passive: true });
+
+      // Mouse drag swipe for desktop
+      heroSlider.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        if (e.target.closest('.hero-split-btn, .slider-dots')) return;
+
+        startX = e.clientX;
+        startY = e.clientY;
+        startTime = Date.now();
+        isDragging = true;
+      });
+
+      window.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+
+        const endX = e.clientX;
+        const endY = e.clientY;
+        const deltaX = startX - endX;
+        const deltaY = startY - endY;
+
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+          setDidSwipe();
+          if (deltaX > 0) {
+            nextSlide(true); // Drag left -> next slide
+          } else {
+            prevSlide(true); // Drag right -> prev slide
+          }
+        }
+      });
     }
 
     // Keyboard navigation (Left / Right arrow keys)
