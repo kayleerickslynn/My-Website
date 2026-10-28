@@ -387,6 +387,11 @@
       touch-action: pan-y;
       user-select: none;
       -webkit-user-select: none;
+      cursor: pointer;
+    }
+
+    .hero-slider.is-dragging {
+      cursor: grabbing;
     }
 
     .hero-slider img {
@@ -400,7 +405,7 @@
       display: flex;
       width: 100%;
       height: 100%;
-      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
       will-change: transform;
     }
 
@@ -602,36 +607,33 @@
       box-shadow: 0 4px 12px rgba(55, 68, 57, 0.2);
     }
 
-    /* Invisible Side Navigation Tap Zones (Click either side of slide to navigate) */
-    .slider-nav-side {
+    /* Screen-Reader Only Accessible Controls */
+    .sr-only {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 50%;
-      height: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
+      width: 1px;
+      height: 1px;
       padding: 0;
-      margin: 0;
-      z-index: 6;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      -webkit-user-select: none;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    .slider-nav-prev {
-      left: 0;
-    }
-
-    .slider-nav-next {
-      right: 0;
-    }
-
-    .slider-nav-side:focus-visible {
-      outline: 2px solid rgba(115, 129, 116, 0.7);
-      outline-offset: -4px;
+    .sr-only:focus {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: auto;
+      height: auto;
+      padding: 8px 16px;
+      background: #FFFFFF;
+      color: var(--text-main);
+      z-index: 100;
+      clip: auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      font-weight: 500;
     }
 
     /* Slider Indicators (Dots) */
@@ -1644,9 +1646,9 @@
 
             </div>
 
-            <!-- Invisible Click Zones on Either Side of Carousel (Left = Previous, Right = Next) -->
-            <button class="slider-nav-side slider-nav-prev" id="sliderPrevBtn" aria-label="Previous slide" title="Previous slide" type="button"></button>
-            <button class="slider-nav-side slider-nav-next" id="sliderNextBtn" aria-label="Next slide" title="Next slide" type="button"></button>
+            <!-- Accessible Slide Controls (Visually Hidden) -->
+            <button class="sr-only" id="sliderPrevBtn" aria-label="Previous slide" onclick="prevSlide(true)" type="button">Previous Slide</button>
+            <button class="sr-only" id="sliderNextBtn" aria-label="Next slide" onclick="nextSlide(true)" type="button">Next Slide</button>
 
             <!-- Slide Indicators (Dots) -->
             <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Slide Selection">
@@ -2881,103 +2883,210 @@
       startSlideTimer();
     }
 
-    // Invisible side click zones and touch/mouse swipe navigation
+    // ==========================================================================
+    // HERO CAROUSEL: TOUCH SWIPE, MOUSE DRAG & SIDE-CLICK NAVIGATION
+    // ==========================================================================
     const heroSlider = document.getElementById('heroSlider');
-    const prevSideBtn = document.getElementById('sliderPrevBtn');
-    const nextSideBtn = document.getElementById('sliderNextBtn');
+    const heroTrack = document.getElementById('heroSlidesTrack');
 
-    let didSwipe = false;
-    let swipeResetTimer = null;
+    let justSwiped = false;
+    let swipeTimer = null;
 
-    function setDidSwipe() {
-      didSwipe = true;
-      if (swipeResetTimer) clearTimeout(swipeResetTimer);
-      swipeResetTimer = setTimeout(() => {
-        didSwipe = false;
-      }, 300);
+    function markJustSwiped() {
+      justSwiped = true;
+      if (swipeTimer) clearTimeout(swipeTimer);
+      swipeTimer = setTimeout(() => {
+        justSwiped = false;
+      }, 250);
     }
 
-    if (prevSideBtn) {
-      prevSideBtn.addEventListener('click', (e) => {
-        if (didSwipe) {
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
-        prevSlide(true);
-      });
-    }
+    if (heroSlider && heroTrack) {
+      // 1. Mobile & Tablet Touch Swiping (interactive live dragging)
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchCurrentX = 0;
+      let touchCurrentY = 0;
+      let isTouching = false;
+      let isHorizontalSwipe = false;
+      let touchStartTranslate = 0;
 
-    if (nextSideBtn) {
-      nextSideBtn.addEventListener('click', (e) => {
-        if (didSwipe) {
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
-        nextSlide(true);
-      });
-    }
-
-    if (heroSlider) {
-      let startX = 0;
-      let startY = 0;
-      let startTime = 0;
-      let isDragging = false;
-
-      // Touch swipe for mobile/tablet
       heroSlider.addEventListener('touchstart', (e) => {
         if (e.touches.length !== 1) return;
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        startTime = Date.now();
+        if (e.target.closest('.slider-dots')) return;
+
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchCurrentX = touchStartX;
+        touchCurrentY = touchStartY;
+        isTouching = true;
+        isHorizontalSwipe = false;
+
+        const sliderWidth = heroSlider.offsetWidth;
+        touchStartTranslate = -currentSlide * sliderWidth;
+        stopSlideTimer();
       }, { passive: true });
 
-      heroSlider.addEventListener('touchend', (e) => {
-        if (e.changedTouches.length === 0) return;
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-        const deltaX = startX - endX;
-        const deltaY = startY - endY;
+      heroSlider.addEventListener('touchmove', (e) => {
+        if (!isTouching || e.touches.length !== 1) return;
 
-        // Ensure movement was primarily horizontal and exceeded distance threshold
-        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
-          setDidSwipe();
-          if (deltaX > 0) {
-            nextSlide(true); // Swipe left -> next slide
-          } else {
-            prevSlide(true); // Swipe right -> prev slide
+        const touch = e.touches[0];
+        touchCurrentX = touch.clientX;
+        touchCurrentY = touch.clientY;
+        const diffX = touchCurrentX - touchStartX;
+        const diffY = touchCurrentY - touchStartY;
+
+        if (!isHorizontalSwipe) {
+          // If vertical movement is greater, yield to natural page scrolling
+          if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+            isTouching = false;
+            return;
           }
+          if (Math.abs(diffX) > 8 && Math.abs(diffX) > Math.abs(diffY)) {
+            isHorizontalSwipe = true;
+            heroTrack.style.transition = 'none';
+          }
+        }
+
+        if (isHorizontalSwipe) {
+          if (e.cancelable) {
+            e.preventDefault();
+          }
+          let moveX = diffX;
+          if ((currentSlide === 0 && diffX > 0) || (currentSlide === totalSlides - 1 && diffX < 0)) {
+            moveX = diffX * 0.35; // Resistance at ends
+          }
+          heroTrack.style.transform = 'translateX(' + (touchStartTranslate + moveX) + 'px)';
+        }
+      }, { passive: false });
+
+      heroSlider.addEventListener('touchend', (e) => {
+        if (!isTouching) return;
+        isTouching = false;
+
+        heroTrack.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+
+        if (isHorizontalSwipe) {
+          const diffX = touchCurrentX - touchStartX;
+          const threshold = Math.min(heroSlider.offsetWidth * 0.12, 45);
+
+          markJustSwiped();
+
+          if (diffX < -threshold) {
+            nextSlide(true); // Swipe left -> next slide
+          } else if (diffX > threshold) {
+            prevSlide(true); // Swipe right -> prev slide
+          } else {
+            updateSliderPosition(); // Snap back
+            restartSlideTimer();
+          }
+        } else {
+          restartSlideTimer();
         }
       }, { passive: true });
 
-      // Mouse drag swipe for desktop
+      heroSlider.addEventListener('touchcancel', () => {
+        if (isTouching) {
+          isTouching = false;
+          heroTrack.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+          updateSliderPosition();
+          restartSlideTimer();
+        }
+      });
+
+      // 2. Desktop Mouse Drag Swiping
+      let isMouseDown = false;
+      let mouseStartX = 0;
+      let mouseStartY = 0;
+      let mouseCurrentX = 0;
+      let mouseIsDragging = false;
+      let mouseStartTranslate = 0;
+
       heroSlider.addEventListener('mousedown', (e) => {
         if (e.button !== 0) return;
         if (e.target.closest('.hero-split-btn, .slider-dots')) return;
 
-        startX = e.clientX;
-        startY = e.clientY;
-        startTime = Date.now();
-        isDragging = true;
+        mouseStartX = e.clientX;
+        mouseStartY = e.clientY;
+        mouseCurrentX = mouseStartX;
+        isMouseDown = true;
+        mouseIsDragging = false;
+
+        const sliderWidth = heroSlider.offsetWidth;
+        mouseStartTranslate = -currentSlide * sliderWidth;
+        stopSlideTimer();
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+
+        mouseCurrentX = e.clientX;
+        const diffX = mouseCurrentX - mouseStartX;
+
+        if (!mouseIsDragging) {
+          if (Math.abs(diffX) > 6) {
+            mouseIsDragging = true;
+            heroSlider.classList.add('is-dragging');
+            heroTrack.style.transition = 'none';
+          }
+        }
+
+        if (mouseIsDragging) {
+          let moveX = diffX;
+          if ((currentSlide === 0 && diffX > 0) || (currentSlide === totalSlides - 1 && diffX < 0)) {
+            moveX = diffX * 0.35;
+          }
+          heroTrack.style.transform = 'translateX(' + (mouseStartTranslate + moveX) + 'px)';
+        }
       });
 
       window.addEventListener('mouseup', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
+        if (!isMouseDown) return;
+        isMouseDown = false;
+        heroSlider.classList.remove('is-dragging');
 
-        const endX = e.clientX;
-        const endY = e.clientY;
-        const deltaX = startX - endX;
-        const deltaY = startY - endY;
+        heroTrack.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
 
-        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
-          setDidSwipe();
-          if (deltaX > 0) {
-            nextSlide(true); // Drag left -> next slide
+        if (mouseIsDragging) {
+          mouseIsDragging = false;
+          const diffX = mouseCurrentX - mouseStartX;
+          const threshold = Math.min(heroSlider.offsetWidth * 0.12, 45);
+
+          markJustSwiped();
+
+          if (diffX < -threshold) {
+            nextSlide(true);
+          } else if (diffX > threshold) {
+            prevSlide(true);
           } else {
-            prevSlide(true); // Drag right -> prev slide
+            updateSliderPosition();
+            restartSlideTimer();
           }
+        } else {
+          restartSlideTimer();
+        }
+      });
+
+      // 3. Side-Click Navigation ("Arrow" behavior when clicking either side of slide)
+      heroSlider.addEventListener('click', (e) => {
+        if (justSwiped) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+
+        // Do not intercept clicks on buttons, links, or indicator dots
+        if (e.target.closest('.hero-split-btn, .slider-dots, a, button')) {
+          return;
+        }
+
+        const rect = heroSlider.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+
+        if (clickX < rect.width / 2) {
+          prevSlide(true); // Left side click -> previous
+        } else {
+          nextSlide(true); // Right side click -> next
         }
       });
     }
