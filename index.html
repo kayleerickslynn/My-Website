@@ -1553,7 +1553,7 @@
               </svg>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#art-all" onclick="closeMenu()">View All Prints</a></li>
+              <li><a href="#art" onclick="closeMenu()">View All Prints</a></li>
               <li><a href="#art-custom" onclick="closeMenu()">Custom family Art</a></li>
               <li><a href="#art-family" onclick="closeMenu()">Family/Children Prints</a></li>
               <li><a href="#art-christian" onclick="closeMenu()">Christian Prints</a></li>
@@ -2413,7 +2413,7 @@
               <p>Have questions about custom commissions, special sizing, or finding the right piece for your space? I'd love to assist you.</p>
               <div class="btn-group" style="justify-content: center;">
                 <a href="#contact" class="btn btn-primary">Send a Message</a>
-                <a href="#art-all" class="btn">Explore The Gallery</a>
+                <a href="#art" class="btn">Explore The Gallery</a>
               </div>
             </div>
 
@@ -2681,7 +2681,7 @@
     }
 
     // Page Routing / Section View Logic
-    const validPages = ['home', 'photography', 'art', 'about', 'contact', 'photography-faq'];
+    const validPages = ['home', 'photography', 'art', 'about', 'contact', 'photography-faq', 'art-all', 'artwork', 'art-faq'];
 
     function navigateToPage(pageName, shouldScroll = true) {
       let targetPage = pageName || 'home';
@@ -2706,9 +2706,9 @@
       }
 
       // Handle art sub-sections
-      if (targetPage === 'art-all' || targetPage === 'all-prints' || targetPage === 'view-all-prints') {
+      if (targetPage === 'art' || targetPage === 'art-all' || targetPage === 'all-prints' || targetPage === 'view-all-prints' || targetPage === 'artwork' || targetPage === 'prints' || targetPage === 'art-prints') {
         targetPage = 'art';
-        scrollTargetId = 'art-all';
+        scrollTargetId = null;
       } else if (targetPage === 'art-custom' || targetPage === 'custom-family-art' || targetPage === 'custom-art' || targetPage === 'custom-family' || targetPage === 'custom') {
         targetPage = 'art';
         scrollTargetId = 'art-custom';
@@ -2724,8 +2724,6 @@
       } else if (targetPage === 'art-faq' || targetPage === 'art-faqs') {
         targetPage = 'art';
         scrollTargetId = 'art-faq';
-      } else if (targetPage === 'artwork') {
-        targetPage = 'art';
       }
 
       if (!validPages.includes(targetPage)) {
@@ -2744,17 +2742,25 @@
       // Update active state in top navigation
       document.querySelectorAll('.nav-links a').forEach(link => {
         const href = link.getAttribute('href');
-        const isCurrentPage = href === '#' + targetPage;
-        const isSubActive = scrollTargetId && href === '#' + scrollTargetId;
-        const isPhotographyParent = targetPage === 'photography-faq' && href === '#photography';
-        const isArtParent = targetPage === 'art' && href === '#art';
-        const isViewAllActive = (targetPage === 'art' && (!scrollTargetId || scrollTargetId === 'art-all') && href === '#art-all');
+        const isDropdownItem = link.closest('.dropdown-menu') !== null;
+        let isActive = false;
 
-        if (isCurrentPage || isSubActive || isPhotographyParent || isArtParent || isViewAllActive) {
-          link.classList.add('active');
-          if (isSubActive || isViewAllActive || (!scrollTargetId && isCurrentPage)) {
-            link.setAttribute('aria-current', 'page');
+        if (isDropdownItem) {
+          if (scrollTargetId) {
+            isActive = (href === '#' + scrollTargetId);
+          } else if (targetPage === 'art' && (href === '#art' || href === '#art-all')) {
+            isActive = true;
           }
+        } else {
+          const isCurrentPage = href === '#' + targetPage;
+          const isPhotographyParent = targetPage === 'photography-faq' && href === '#photography';
+          const isArtParent = targetPage === 'art' && href === '#art';
+          isActive = isCurrentPage || isPhotographyParent || isArtParent;
+        }
+
+        if (isActive) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
         } else {
           link.classList.remove('active');
           link.removeAttribute('aria-current');
